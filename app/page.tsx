@@ -1,8 +1,11 @@
-import React from "react"
+"use client"
+
+import React, { useState, useEffect } from "react"
 import ProjectCard from "@/components/ProjectCard"
 import { Badge } from "@/components/ui/badge"
 import { Github, Linkedin, Instagram, Mail } from "lucide-react"
 import projects from "@/data/projects.json"
+import { motion, useMotionValue, useTransform, animate } from "motion/react"
 
 const techSkills = [
   "C++", "Python", "SQL", "JavaScript", "C#", "PHP", "Assembly", 
@@ -14,16 +17,44 @@ const softSkills = [
   "🎯 Focus & Discipline", "⏰ Time Management", "📚 Continuous Learning", "💡 Creativity"
 ]
 
+const TypewriterHeading = () => {
+  const text = "hi, im Ababei Raul"
+  const count = useMotionValue(0)
+  const rounded = useTransform(count, (latest) => Math.round(latest))
+  const displayText = useTransform(rounded, (latest) => text.slice(0, latest))
+
+  useEffect(() => {
+    const controls = animate(count, text.length, {
+      type: "tween",
+      duration: 2,
+      ease: "easeInOut",
+      repeat: Infinity,
+      repeatType: "reverse",
+      repeatDelay: 1
+    })
+    return controls.stop
+  }, [count, text.length])
+
+  return (
+    <div className="flex items-center gap-1 mb-4">
+      <motion.h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white pb-1">
+        {displayText}
+      </motion.h1>
+      <motion.div
+        animate={{ opacity: [0, 1, 0] }}
+        transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+        className="w-1 h-10 sm:h-12 bg-zinc-400"
+      />
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <div className="flex flex-col items-center">
       {/* Hero Section */}
       <section className="w-full max-w-4xl px-6 pt-32 pb-16 flex flex-col items-center text-center sm:items-start sm:text-left">
-        <div className="inline-block overflow-hidden whitespace-nowrap border-r-2 border-zinc-400 animate-typing animate-blink mb-4">
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white pb-1">
-            hi, im <span className="text-zinc-500">Ababei Raul</span>
-          </h1>
-        </div>
+        <TypewriterHeading />
         <h2 className="text-lg sm:text-xl font-medium text-zinc-400 mb-6 uppercase tracking-widest">
           welcome to my personal webpage
         </h2>

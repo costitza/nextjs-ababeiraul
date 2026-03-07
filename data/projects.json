@@ -157,6 +157,10 @@
         "image": "/resources/amsh.png",
         "content": [
             {
+                "heading": "header",
+                "code": "╔═════════════════════════════════════════════╗\n║                                             ║\n║          AUTO MOUNT SHELL (AMSH)            ║\n║            ITBI – Proiect 2025              ║\n║       By Ababei Raul & Iosub Dragos         ║\n║                                             ║\n╚═════════════════════════════════════════════╝"
+            },
+            {
                 "heading": "overview",
                 "text": "AMSH (Auto Mount Shell) is a custom command-line interpreter designed for Linux systems to automate the management of storage devices. Developed in collaboration with Iosub Dragoș-Casian, this project focuses on efficiency and resource management by handling the mounting and unmounting of file systems automatically based on user activity."
             },

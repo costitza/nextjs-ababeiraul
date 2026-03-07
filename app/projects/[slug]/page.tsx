@@ -64,7 +64,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </p>
 
           {project.image && (
-            <div className="w-full rounded-2xl overflow-hidden border border-white/5 bg-white/[0.02]">
+            <div className="max-w-xl rounded-xl overflow-hidden border border-white/5 bg-white/[0.02]">
               <Image 
                 src={project.image} 
                 alt={project.title}
@@ -110,7 +110,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 )}
 
                 {section.image && (
-                  <div className="w-full my-8 rounded-xl overflow-hidden border border-white/5 bg-white/[0.01]">
+                  <div className="max-w-md my-8 rounded-lg overflow-hidden border border-white/5 bg-white/[0.01]">
                     <Image 
                       src={section.image} 
                       alt={section.heading}

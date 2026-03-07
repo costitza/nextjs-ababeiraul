@@ -15,6 +15,7 @@ interface ProjectContent {
   code?: string
   additional_code?: string
   links?: { label: string; url: string }[]
+  image?: string | null
 }
 
 interface Project {
@@ -63,12 +64,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </p>
 
           {project.image && (
-            <div className="relative w-full aspect-[21/9] mt-8 rounded-lg overflow-hidden border border-white/5 grayscale-[0.2] hover:grayscale-0 transition-all duration-500">
+            <div className="relative w-full aspect-[16/9] mt-8 rounded-lg overflow-hidden border border-white/5 bg-white/[0.02]">
               <Image 
                 src={project.image} 
                 alt={project.title}
                 fill
-                className="object-cover opacity-80"
+                className="object-contain p-4 opacity-90 transition-all duration-500"
               />
             </div>
           )}
@@ -81,9 +82,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 {section.heading}
               </h2>
               
-              <div className="space-y-4 max-w-2xl">
+              <div className="space-y-6 max-w-2xl">
                 {section.text && (
-                  <p className="text-zinc-400 text-[15px] leading-relaxed">
+                  <p className="text-zinc-400 text-[15px] leading-relaxed text-justify">
                     {section.text}
                   </p>
                 )}
@@ -103,6 +104,17 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   <p className="text-zinc-500 text-[14px] leading-relaxed italic border-l-2 border-white/5 pl-4 py-1">
                     {section.subtext}
                   </p>
+                )}
+
+                {section.image && (
+                  <div className="relative w-full aspect-[16/10] my-8 rounded-lg overflow-hidden border border-white/5 bg-white/[0.01]">
+                    <Image 
+                      src={section.image} 
+                      alt={section.heading}
+                      fill
+                      className="object-contain p-2 opacity-80"
+                    />
+                  </div>
                 )}
 
                 {section.code && (

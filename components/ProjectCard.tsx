@@ -20,12 +20,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
     >
       <Card className="h-full bg-white/[0.02] border-white/5 hover:bg-white/[0.04] transition-all duration-300 overflow-hidden cursor-pointer flex flex-col rounded-md">
         {project.image && (
-          <div className="relative w-full h-40 overflow-hidden">
+          <div className="relative w-full h-44 overflow-hidden bg-white/[0.01]">
             <Image 
               src={project.image} 
               alt={project.title}
               fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100 grayscale-[0.5] group-hover:grayscale-0"
+              className="object-contain p-2 transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100 grayscale-[0.5] group-hover:grayscale-0"
             />
           </div>
         )}

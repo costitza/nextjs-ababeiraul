@@ -21,7 +21,8 @@
                     "Rover mode: Moves on wheels, consumes minimal energy, and can transport small medical kits such as bandages or food to people trapped in hazardous zones.",
                     "Drone mode: With a simple command, Quest extends its arms and transforms into a quadcopter, capable of scanning large areas from above. It can detect heat sources, locate survivors, and transmit live video data to emergency teams."
                 ],
-                "subtext": "Equipped with a high-resolution camera, AI-based object detection, and real-time image transmission, Quest provides an intelligent and adaptive solution for both monitoring and active intervention."
+                "subtext": "Equipped with a high-resolution camera, AI-based object detection, and real-time image transmission, Quest provides an intelligent and adaptive solution for both monitoring and active intervention.",
+                "image": "/resources/drone.jpeg"
             },
             {
                 "heading": "design and structure",
@@ -31,7 +32,8 @@
                     "Each wheel assembly includes a DC motor and a brushless motor with propeller for flight.",
                     "Magnetic supports reduce strain on servos and stabilize the robot even when unpowered.",
                     "The centrally placed battery ensures balance and easy replacement."
-                ]
+                ],
+                "image": "/resources/side-view.jpeg"
             },
             {
                 "heading": "electronics and control",
@@ -42,7 +44,8 @@
                     "Pixhawk 2.4.8 – handles flight stabilization and telemetry.",
                     "OAK-D Lite – provides real-time vision with object detection using YOLOv8 nano."
                 ],
-                "subtext": "The power system uses multiple voltage converters to safely supply all modules, while serial and UART communication links keep sensors, motors, and processors synchronized."
+                "subtext": "The power system uses multiple voltage converters to safely supply all modules, while serial and UART communication links keep sensors, motors, and processors synchronized.",
+                "image": "/resources/electronica.jpeg"
             },
             {
                 "heading": "Software and AI",

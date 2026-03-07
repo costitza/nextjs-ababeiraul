@@ -59,17 +59,20 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">
             {project.title}
           </h1>
-          <p className="text-base text-zinc-500 leading-relaxed max-w-2xl">
+          <p className="text-base text-zinc-500 leading-relaxed max-w-2xl mb-8">
             {project.description}
           </p>
 
           {project.image && (
-            <div className="relative w-full aspect-[16/9] mt-8 rounded-lg overflow-hidden border border-white/5 bg-white/[0.02]">
+            <div className="w-full rounded-2xl overflow-hidden border border-white/5 bg-white/[0.02]">
               <Image 
                 src={project.image} 
                 alt={project.title}
-                fill
-                className="object-contain p-4 opacity-90 transition-all duration-500"
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: '100%', height: 'auto' }}
+                className="opacity-90 transition-all duration-500 block"
               />
             </div>
           )}
@@ -107,12 +110,15 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 )}
 
                 {section.image && (
-                  <div className="relative w-full aspect-[16/10] my-8 rounded-lg overflow-hidden border border-white/5 bg-white/[0.01]">
+                  <div className="w-full my-8 rounded-xl overflow-hidden border border-white/5 bg-white/[0.01]">
                     <Image 
                       src={section.image} 
                       alt={section.heading}
-                      fill
-                      className="object-contain p-2 opacity-80"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
+                      style={{ width: '100%', height: 'auto' }}
+                      className="opacity-80 block"
                     />
                   </div>
                 )}

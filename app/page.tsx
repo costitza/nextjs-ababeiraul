@@ -13,8 +13,8 @@ const techSkills = [
 ]
 
 const softSkills = [
-  "💬 Communication", "🧩 Problem Solving", "🤝 Teamwork", "🧠 Critical Thinking", 
-  "🎯 Focus & Discipline", "⏰ Time Management", "📚 Continuous Learning", "💡 Creativity"
+  "Communication", "Problem Solving", "Teamwork", "Critical Thinking", 
+  "Focus & Discipline", "Time Management", "Continuous Learning", "Creativity"
 ]
 
 const TypewriterHeading = () => {

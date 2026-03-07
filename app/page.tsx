@@ -19,9 +19,11 @@ export default function Home() {
     <div className="flex flex-col items-center">
       {/* Hero Section */}
       <section className="w-full max-w-4xl px-6 pt-32 pb-16 flex flex-col items-center text-center sm:items-start sm:text-left">
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-4">
-          hi, im <span className="text-zinc-500">Ababei Raul</span>
-        </h1>
+        <div className="inline-block overflow-hidden whitespace-nowrap border-r-2 border-zinc-400 animate-typing animate-blink mb-4">
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white pb-1">
+            hi, im <span className="text-zinc-500">Ababei Raul</span>
+          </h1>
+        </div>
         <h2 className="text-lg sm:text-xl font-medium text-zinc-400 mb-6 uppercase tracking-widest">
           welcome to my personal webpage
         </h2>

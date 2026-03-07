@@ -84,7 +84,7 @@ export default function Home() {
       {/* Projects Section */}
       <section id="projects" className="w-full max-w-4xl px-6 py-16 border-t border-white/5">
         <h3 className="text-[11px] font-black text-white/30 mb-8 uppercase tracking-[0.2em]">projects</h3>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-4">
+        <div className="flex flex-wrap gap-3">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} />
           ))}

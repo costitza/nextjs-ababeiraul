@@ -16,9 +16,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <Link 
       href={`/projects/${project.link}`}
-      className="group block"
+      className="group block flex-grow basis-[280px] max-w-sm"
     >
-      <Card className="bg-white/[0.02] border-white/5 hover:bg-white/[0.04] transition-all duration-300 overflow-hidden cursor-pointer flex flex-col rounded-md">
+      <Card className="h-full bg-white/[0.02] border-white/5 hover:bg-white/[0.04] transition-all duration-300 overflow-hidden cursor-pointer flex flex-col rounded-md">
         {project.image && (
           <div className="relative w-full aspect-video overflow-hidden">
             <Image 

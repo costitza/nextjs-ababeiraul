@@ -1,4 +1,5 @@
 import React from "react"
+import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
@@ -11,10 +12,8 @@ interface Project {
 
 const ProjectCard = ({ project }: { project: Project }) => {
   return (
-    <a 
-      href={project.link} 
-      target="_blank" 
-      rel="noopener noreferrer"
+    <Link 
+      href={`/projects/${project.link}`}
       className="group"
     >
       <Card className="h-full bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300 overflow-hidden cursor-pointer">
@@ -34,7 +33,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           </p>
         </CardContent>
       </Card>
-    </a>
+    </Link>
   )
 }
 

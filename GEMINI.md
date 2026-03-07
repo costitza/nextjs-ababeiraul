@@ -25,6 +25,12 @@
 - `data/`: Source JSON files for projects and user info.
 - `public/`: Static assets like images and PDFs (e.g., `resume.pdf`).
 
+## Content Migration Workflow
+- **Extraction**: When asked to migrate project details, read the corresponding `.html` file in the legacy `/pages` directory.
+- **Parsing**: Identify the `overview`, `key features`, `technical architecture`, and `technical stack` sections.
+- **Data Enrichment**: Append this extracted content into a `detailedDescription` field within `data/projects.json`.
+- **Dynamic Routing**: Use the enriched JSON to populate a dynamic route at `app/projects/[slug]/page.tsx`.
+
 ## Agentic Instructions
 - **File Operations**: When creating new pages, always check `data/projects.json` to ensure consistency with existing project data.
 - **Testing**: After generating a component, suggest a basic test structure using Vitest or React Testing Library.

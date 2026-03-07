@@ -3,24 +3,258 @@
         "title": "Quest",
         "category": "Robotics",
         "description": "Innovative robotics project combining a drone with a rover.",
-        "link": "quest.html"
+        "link": "quest",
+        "content": [
+            {
+                "heading": "introduction",
+                "text": "Quest is a multifunctional rescue robot designed to operate efficiently in critical and hard-to-reach environments. Developed by Raul-Costin Ababei and Alexandru-Lucian Motoașcă at Colegiul Național de Informatică “Grigore Moisil” Brașov, this project combines ground mobility and aerial versatility to assist in emergency missions such as locating missing persons, exploring caves, or supporting firefighting operations."
+            },
+            {
+                "heading": "motivation",
+                "text": "The idea behind Quest emerged from a real need for innovative tools that can save lives in extreme situations. Traditional rescue missions are often delayed or limited by terrain and safety constraints. Quest was imagined as a machine capable of overcoming these obstacles — a robot that can both drive on four wheels and take flight, reaching areas where human access is dangerous or impossible."
+            },
+            {
+                "heading": "capabilities & usefulness",
+                "text": "Quest operates in two main modes:",
+                "list": [
+                    "Rover mode: Moves on wheels, consumes minimal energy, and can transport small medical kits such as bandages or food to people trapped in hazardous zones.",
+                    "Drone mode: With a simple command, Quest extends its arms and transforms into a quadcopter, capable of scanning large areas from above. It can detect heat sources, locate survivors, and transmit live video data to emergency teams."
+                ],
+                "subtext": "Equipped with a high-resolution camera, AI-based object detection, and real-time image transmission, Quest provides an intelligent and adaptive solution for both monitoring and active intervention."
+            },
+            {
+                "heading": "design and structure",
+                "text": "Mechanically, Quest is an elegant fusion of robotics and aeronautics. Its frame is 3D-printed using PETG and PETG-CF, ensuring strength without excessive weight.",
+                "list": [
+                    "Each leg integrates two servo motors for articulation.",
+                    "Each wheel assembly includes a DC motor and a brushless motor with propeller for flight.",
+                    "Magnetic supports reduce strain on servos and stabilize the robot even when unpowered.",
+                    "The centrally placed battery ensures balance and easy replacement."
+                ]
+            },
+            {
+                "heading": "electronics and control",
+                "text": "The electronic system integrates multiple components for stability and intelligence:",
+                "list": [
+                    "Raspberry Pi 4B – main controller managing overall coordination and communication.",
+                    "Arduino Mega – controls servo and DC motors.",
+                    "Pixhawk 2.4.8 – handles flight stabilization and telemetry.",
+                    "OAK-D Lite – provides real-time vision with object detection using YOLOv8 nano."
+                ],
+                "subtext": "The power system uses multiple voltage converters to safely supply all modules, while serial and UART communication links keep sensors, motors, and processors synchronized."
+            },
+            {
+                "heading": "Software and AI",
+                "list": [
+                    "A Flask-based backend hosted on Raspberry Pi for communication and data routing.",
+                    "Socket.io for real-time video and telemetry streaming.",
+                    "Integration with YOLOv8n on OAK-D Lite for object and human detection.",
+                    "A React-based web interface hosted on Firebase, accessible through a secure ngrok tunnel.",
+                    "Custom Arduino firmware managing low-level control and safety fallbacks."
+                ]
+            },
+            {
+                "heading": "Future Development",
+                "text": "Quest continues to evolve with potential improvements such as:",
+                "list": [
+                    "Higher-capacity batteries for extended missions.",
+                    "Integration of gas and thermal sensors for hazardous environments.",
+                    "Machine learning for autonomous navigation and improved object recognition.",
+                    "Collaborative multi-robot communication for large-scale search missions."
+                ]
+            },
+            {
+                "heading": "Conclusion",
+                "text": "Quest represents a fusion of creativity, engineering, and purpose — a machine built not just to demonstrate technical ability, but to save lives. Through the combination of robotics, AI, and intelligent control systems, Quest pushes the boundaries of what small-scale autonomous systems can achieve in emergency response."
+            },
+            {
+                "heading": "Explore More",
+                "links": [
+                    { "label": "Live Demo", "url": "https://your-demo-link.com" },
+                    { "label": "Source Code", "url": "https://github.com/costitza/Quest" }
+                ]
+            }
+        ]
     },
     {
         "title": "Udraw",
         "category": "Software",
         "description": "C# WinForms Drawing App with SQL Storage.",
-        "link": "udraw.html"
+        "link": "udraw",
+        "content": [
+            {
+                "heading": "overview",
+                "text": "uDraw is a personal project built in C# (WinForms) to explore the intersection of GUI development, graphics rendering, and SQL database management. The goal: create a simple desktop drawing environment that can save drawings into an SQL Server database and later load them back as editable canvases."
+            },
+            {
+                "heading": "application structure",
+                "code": "uDraw/\n├── Forms/\n│   ├── MainForm.cs\n│   ├── SaveForm.cs\n│   └── LoadForm.cs\n├── Components/\n│   └── PaintingCanvas.cs\n├── Database/\n│   ├── DatabaseHelper.cs\n│   └── DatabaseConfig.cs\n├── Properties/\n└── Program.cs",
+                "subtext": "The app follows a clean separation of concerns:\n• UI Layer → Forms for user interaction\n• Graphics Layer → Canvas rendering\n• Persistence Layer → SQL Server CRUD operations"
+            },
+            {
+                "heading": "drawing logic",
+                "text": "The PaintingCanvas control is the core of uDraw. It captures mouse input, renders strokes, and maintains a Bitmap buffer to avoid flicker.",
+                "code": "// PaintingCanvas.cs\npublic class PaintingCanvas : Panel\n{\n    private bool isDrawing = false;\n    private Point lastPoint;\n    private Bitmap canvas;\n\n    public PaintingCanvas()\n    {\n        this.DoubleBuffered = true;\n        canvas = new Bitmap(800, 600);\n        this.MouseDown += OnMouseDown;\n        this.MouseMove += OnMouseMove;\n        this.MouseUp += OnMouseUp;\n    }\n\n    private void OnMouseDown(object sender, MouseEventArgs e)\n    {\n        isDrawing = true;\n        lastPoint = e.Location;\n    }\n\n    private void OnMouseMove(object sender, MouseEventArgs e)\n    {\n        if (!isDrawing) return;\n        using (Graphics g = Graphics.FromImage(canvas))\n        {\n            g.SmoothingMode = SmoothingMode.AntiAlias;\n            g.DrawLine(new Pen(Color.DeepSkyBlue, 2), lastPoint, e.Location);\n        }\n        lastPoint = e.Location;\n        Invalidate();\n    }\n\n    private void OnMouseUp(object sender, MouseEventArgs e)\n    {\n        isDrawing = false;\n    }\n\n    protected override void OnPaint(PaintEventArgs e)\n    {\n        e.Graphics.DrawImageUnscaled(canvas, 0, 0);\n    }\n}"
+            },
+            {
+                "heading": "database integration",
+                "text": "Each drawing is stored in SQL Server as a VARBINARY(MAX) column. The DatabaseHelper handles serialization and CRUD operations.",
+                "code": "// DatabaseHelper.cs\npublic static void SaveDrawing(string name, Bitmap bmp)\n{\n    using (SqlConnection conn = new SqlConnection(DatabaseConfig.ConnectionString))\n    {\n        conn.Open();\n        using (MemoryStream ms = new MemoryStream())\n        {\n            bmp.Save(ms, ImageFormat.Png);\n            byte[] data = ms.ToArray();\n\n            string q = \"INSERT INTO Drawings (Name, ImageData, CreatedAt) VALUES (@n, @d, GETDATE())\";\n            using (SqlCommand cmd = new SqlCommand(q, conn))\n            {\n                cmd.Parameters.AddWithValue(\"@n\", name);\n                cmd.Parameters.Add(\"@d\", SqlDbType.VarBinary).Value = data;\n                cmd.ExecuteNonQuery();\n            }\n        }\n    }\n}",
+                "subtext": "Retrieving the drawing:",
+                "additional_code": "// DatabaseHelper.cs\npublic static Bitmap LoadDrawing(string name)\n{\n    using (SqlConnection conn = new SqlConnection(DatabaseConfig.ConnectionString))\n    {\n        conn.Open();\n        string q = \"SELECT ImageData FROM Drawings WHERE Name = @n\";\n        using (SqlCommand cmd = new SqlCommand(q, conn))\n        {\n            cmd.Parameters.AddWithValue(\"@n\", name);\n            var imgData = (byte[])cmd.ExecuteScalar();\n            if (imgData == null) return null;\n\n            using (MemoryStream ms = new MemoryStream(imgData))\n                return new Bitmap(ms);\n        }\n    }\n}"
+            },
+            {
+                "heading": "SQL Schema",
+                "text": "The database schema is simple and optimized for binary image storage:",
+                "code": "CREATE TABLE Drawings (\n    Id INT IDENTITY PRIMARY KEY,\n    Name NVARCHAR(100) NOT NULL,\n    ImageData VARBINARY(MAX) NOT NULL,\n    CreatedAt DATETIME DEFAULT GETDATE()\n);"
+            },
+            {
+                "heading": "configuration",
+                "code": "// DatabaseConfig.cs\npublic static class DatabaseConfig\n{\n    public static string ConnectionString =\n        \"Server=localhost;Database=uDrawDB;Trusted_Connection=True;\";\n}",
+                "subtext": "The configuration file allows switching between local or remote SQL servers easily. Error handling ensures the app doesn’t crash if the database is unavailable."
+            },
+            {
+                "heading": "technical stack",
+                "list": [
+                    "Language: C# (.NET Framework 4.8)",
+                    "UI Framework: Windows Forms",
+                    "Database: Microsoft SQL Server",
+                    "Libraries: System.Data.SqlClient, System.Drawing",
+                    "IDE: Visual Studio 2022"
+                ]
+            },
+            {
+                "heading": "future work",
+                "list": [
+                    "Add multiple layers and brush styles.",
+                    "Integrate cloud save (Azure Blob Storage or Firebase).",
+                    "Implement undo/redo stack and drawing history.",
+                    "Refactor UI using WPF for modern rendering."
+                ]
+            },
+            {
+                "heading": "conclusion",
+                "text": "uDraw shows that even small WinForms apps can be full-stack. From Graphics rendering to SQL persistence, it encapsulates key desktop software concepts — responsiveness, data management, and a clean modular codebase."
+            },
+            {
+                "heading": "explore more",
+                "links": [
+                    { "label": "View on GitHub", "url": "https://github.com/costitza/udraw" }
+                ]
+            }
+        ]
     },
     {
         "title": "AutoMounterShell",
         "category": "Software",
         "description": "A shell wrapper for Linux where you can mount and unmount drives without commands.",
-        "link": "amsh.html"
+        "link": "amsh",
+        "content": [
+            {
+                "heading": "overview",
+                "text": "AMSH (Auto Mount Shell) is a custom command-line interpreter designed for Linux systems to automate the management of storage devices. Developed in collaboration with Iosub Dragoș-Casian, this project focuses on efficiency and resource management by handling the mounting and unmounting of file systems automatically based on user activity."
+            },
+            {
+                "heading": "key features",
+                "text": "AMSH enhances the standard shell experience with intelligent background processes:",
+                "list": [
+                    "Smart Auto-Mounting: Automatically detects when a user navigates (`cd`) to a mountpoint or accesses files within it, mounting the device instantly.",
+                    "TTL (Time To Live) Management: Monitors inactivity and automatically unmounts devices after a configurable period to save resources and ensure safety.",
+                    "Desktop Notifications: Integrates with `notify-send` to alert the user in the GUI when devices are mounted or unmounted.",
+                    "Custom TUI: Features a stylized ASCII interface, colored prompts showing the current user and path, and formatted history tables."
+                ]
+            },
+            {
+                "heading": "configuration",
+                "text": "The system is highly configurable via the amsh.conf file, allowing users to define specific TTLs (in minutes) and file system types for different devices.",
+                "code": "# DEVICE            MOUNTPOINT                FS_TYPE   TTL\n/tmp/disk.img       /tmp/amsh_mnt             ext4      1\n/dev/sdb1           /mnt/usb                  vfat      5\n/tmp/secret.img     /tmp/amsh_secret          ext4      2"
+            },
+            {
+                "heading": "technical architecture",
+                "text": "The project is built entirely in Bash and leverages core Linux utilities. It handles signal trapping (SIGINT) to prevent accidental closures and uses `fuser` to ensure devices aren't unmounted while in use.",
+                "subtext": "The codebase is modularized into specific components:",
+                "list": [
+                    "amsh.sh: The main shell loop and command processor.",
+                    "mount_manager.sh: Logic for mounting, unmounting, and TTL verification.",
+                    "style.sh: Handles the TUI elements, colors, and banner generation.",
+                    "setup_demo.sh: A utility script that creates virtual disk images to test the functionality without physical hardware."
+                ]
+            },
+            {
+                "heading": "logic snippet",
+                "text": "Below is a snippet from the mount_manager.sh showing how the system checks for expired TTLs using file timestamps.",
+                "code": "# Check time & unmount\ncheck_and_umount_expired() {\n    if [[ ! -f \"$CONFIG_FILE\" ]]; then return; fi\n\n    while read -r device mpoint fstype ttl; do\n        local ttl_file=\"$TTL_DIR/${mpoint//\\//_}.last_access\"\n\n        # Check if active mountpoint\n        if [[ -f \"$ttl_file\" ]] && mountpoint -q \"$mpoint\"; then\n            local last_access=$(stat -c %Y \"$ttl_file\")\n            local current_time=$(date +%s)\n            local diff=$(( (current_time - last_access) / 60 ))\n\n            # Check expiration & active processes\n            if [ \"$diff\" -ge \"$ttl\" ]; then\n                if ! fuser -s \"$mpoint\" 2>/dev/null; then\n                    echo \"[SYSTEM] TTL expirat. Demontare: $mpoint\"\n                    sudo umount \"$mpoint\"\n                    rm \"$ttl_file\"\n                fi\n            fi\n        fi\n    done < \"$CONFIG_FILE\"\n}"
+            },
+            {
+                "heading": "conclusion",
+                "text": "AMSH serves as a powerful demonstration of shell scripting capabilities, process management, and Linux system administration automation. It transforms the tedious task of manual mounting into a seamless, background operation."
+            },
+            {
+                "heading": "explore more",
+                "links": [
+                    { "label": "View on GitHub", "url": "https://github.com/costitza/amsh_itbi" }
+                ]
+            }
+        ]
     },
     {
         "title": ".flux",
         "category": "Software",
         "description": "An AI-first engineering intelligence dashboard that gives your code a voice.",
-        "link": "dotflux.html"
+        "link": "dotflux",
+        "content": [
+            {
+                "heading": "introduction",
+                "text": ".flux is an engineering intelligence platform designed to centralize the fragmented context of software development. Created by me and Tisca Catalin during the \"AI Thinkerers\" Hackathon in Bucharest (organized by ElevenLabs), this project secured 4th place in the local competition.",
+                "subtext": "The platform ingests signals from GitHub repositories, pull requests, and voice meetings into a unified Convex database, allowing AI agents to analyze the \"pulse\" of an engineering team."
+            },
+            {
+                "heading": "the problem & solution",
+                "text": "Engineering context is often scattered across code, chat logs, and call notes. AI agents typically act blindly without access to this historical data.",
+                "subtext": ".flux solves this by creating a \"God mode\" context layer. It captures:",
+                "list": [
+                    "Code Metadata: PRs, commits, and file changes via GitHub.",
+                    "Human Context: Voice calls and architectural decisions via ElevenLabs.",
+                    "Team Dynamics: Contributor roles and seniority inferred from code complexity."
+                ]
+            },
+            {
+                "heading": "agentic workflow",
+                "text": "Unlike simple CI/CD scripts, .flux employs autonomous agents to reason about the data:",
+                "list": [
+                    "The Analyst (PRAnalyzer): Proactively monitors PRs to assess risk levels (Low to Critical) and impact radius without human intervention.",
+                    "The Profiler (ContributorProfiler): Analyzes commit history to infer if a contributor is a \"Frontend Junior\" or \"Backend Lead\".",
+                    "The Scribe (Meeting Listener): Uses ElevenLabs Scribe v1 to Transcribe engineering calls and extract actionable TODOs linked to specific files."
+                ]
+            },
+            {
+                "heading": "voice intelligence",
+                "text": "The crown jewel of the project is the RepoAssistant Agent. It allows engineers to literally \"talk\" to their codebase. Using ElevenLabs Multilingual v2 for speech-out and the Vercel AI SDK for orchestration, users can ask questions like \"What is the risk level of the last 3 PRs?\" or \"Who owns the payment infrastructure?\" and receive a spoken, context-aware answer."
+            },
+            {
+                "heading": "technical implementation",
+                "text": "The project utilizes a modern, real-time stack to support agentic behavior. Here is a snippet showing how we handle text-to-speech generation in the API:",
+                "code": "// api/speak/route.ts\nconst { audio } = await generateSpeech({\n  model: elevenlabs.speech(modelId),\n  text,\n});\n\nconst arrayBuffer = audio.uint8Array.buffer as ArrayBuffer;\nconst blob = new Blob([arrayBuffer], { type: \"audio/mpeg\" });\n\nreturn new Response(blob, {\n  status: 200,\n  headers: { \"Content-Type\": \"audio/mpeg\" },\n});"
+            },
+            {
+                "heading": "tech stack",
+                "list": [
+                    "Frontend: Next.js 16 (App Dir), React 19, Tailwind CSS v4, Shadcn UI.",
+                    "Backend & DB: Convex (Real-time database and scheduled functions).",
+                    "AI & Agents: Vercel AI SDK, OpenAI, ElevenLabs (STT & TTS).",
+                    "Auth & Tools: Clerk Authentication, Octokit (GitHub API)."
+                ]
+            },
+            {
+                "heading": "conclusion",
+                "text": ".flux moves beyond static dashboards. By combining deep code analysis with voice intelligence, it creates a living, breathing interface for software engineering teams. It transforms raw metadata into actionable insights, bridging the gap between what the code says and what the team intends."
+            },
+            {
+                "heading": "explore more",
+                "links": [
+                    { "label": "View on Github", "url": "https://github.com/costitza/dotflox" }
+                ]
+            }
+        ]
     }
 ]

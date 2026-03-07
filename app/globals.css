@@ -51,8 +51,8 @@
 
   @keyframes typing {
     0% { width: 0 }
-    30% { width: 100% }
-    70% { width: 100% }
+    30% { width: 18ch }
+    70% { width: 18ch }
     80% { width: 0 }
     100% { width: 0 }
   }
@@ -62,7 +62,7 @@
     50% { border-color: oklch(0.708 0 0) }
   }
 
-  --animate-typing: typing 6s steps(30, end) infinite;
+  --animate-typing: typing 6s steps(18, end) infinite;
   --animate-blink: blink-caret 1s infinite;
 }
 

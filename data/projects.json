@@ -85,7 +85,7 @@
         "category": "Software",
         "description": "C# WinForms Drawing App with SQL Storage.",
         "link": "udraw",
-        "image": null,
+        "image": "/resources/udraw.png",
         "content": [
             {
                 "heading": "overview",
@@ -154,7 +154,7 @@
         "category": "Software",
         "description": "A shell wrapper for Linux where you can mount and unmount drives without commands.",
         "link": "amsh",
-        "image": null,
+        "image": "/resources/amsh.png",
         "content": [
             {
                 "heading": "overview",

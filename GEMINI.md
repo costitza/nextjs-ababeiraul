@@ -1,5 +1,9 @@
 # Project Context: Raul Ababei Portfolio (Next.js Migration)
 
+## Repository of old website
+- **URL**: https://github.com/costitza/personal_website
+- **Description**: Personal portfolio migration from vanilla HTML/JS to Next.js 15+
+
 ## Tech Stack
 - **Framework**: Next.js 15+ (App Router)
 - **Language**: TypeScript

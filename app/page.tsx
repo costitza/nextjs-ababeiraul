@@ -1,65 +1,137 @@
-import Image from "next/image";
+import React from "react"
+import ProjectCard from "@/components/ProjectCard"
+import { Badge } from "@/components/ui/badge"
+import { Github, Linkedin, Instagram, Mail } from "lucide-react"
+
+const projects = [
+    {
+        "title": "Quest",
+        "category": "Robotics",
+        "description": "Innovative robotics project combining a drone with a rover.",
+        "link": "quest.html"
+    },
+    {
+        "title": "Udraw",
+        "category": "Software",
+        "description": "C# WinForms Drawing App with SQL Storage.",
+        "link": "udraw.html"
+    },
+    {
+        "title": "AutoMounterShell",
+        "category": "Software",
+        "description": "A shell wrapper for Linux where you can mount and unmount drives without commands.",
+        "link": "amsh.html"
+    },
+    {
+        "title": ".flux",
+        "category": "Software",
+        "description": "An AI-first engineering intelligence dashboard that gives your code a voice.",
+        "link": "dotflux.html"
+    }
+]
+
+const techSkills = [
+  "C++", "Python", "SQL", "JavaScript", "C#", "PHP", "Assembly", 
+  "Tailwind", "Node.js", "Flask", ".NET", "Spring Boot", "PostgreSQL", "Git"
+]
+
+const softSkills = [
+  "💬 Communication", "🧩 Problem Solving", "🤝 Teamwork", "🧠 Critical Thinking", 
+  "🎯 Focus & Discipline", "⏰ Time Management", "📚 Continuous Learning", "💡 Creativity"
+]
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="flex flex-col items-center">
+      {/* Hero Section */}
+      <section className="w-full max-w-5xl px-6 pt-48 pb-24 flex flex-col items-center text-center sm:items-start sm:text-left">
+        <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white mb-6">
+          hi, im <span className="text-zinc-400">Ababei Raul</span>
+        </h1>
+        <h2 className="text-2xl sm:text-3xl font-medium text-zinc-400 mb-8">
+          welcome to my personal webpage
+        </h2>
+        <p className="max-w-2xl text-lg text-zinc-500 leading-relaxed">
+          Aspiring Full-Stack Web Developer | Building cool things for the web and others | Turning ideas into digital reality
+        </p>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="w-full max-w-5xl px-6 py-24 border-t border-white/5">
+        <h3 className="text-3xl font-bold text-white mb-12">about me</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="space-y-6 text-zinc-400 text-lg leading-relaxed">
+            <p>
+              I am a first year <a href="https://fmi.unibuc.ro/" className="text-white hover:underline">@unibuc fmi</a> student, majoring in computer science.
+            </p>
+            <p>
+              I am passionate and hardworking, especially trying to learn new skills. I like bouldering and I am motivated to build and achieve my goals.
+            </p>
+            <p>
+              You can find more about me and my background in my <a href="/resume.pdf" target="_blank" className="text-white hover:underline">resume</a>.
+            </p>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="w-full max-w-5xl px-6 py-24 border-t border-white/5">
+        <h3 className="text-3xl font-bold text-white mb-12">projects</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {projects.map((project, index) => (
+            <ProjectCard key={index} project={project} />
+          ))}
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="w-full max-w-5xl px-6 py-24 border-t border-white/5">
+        <h3 className="text-3xl font-bold text-white mb-12">skills</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div>
+            <h4 className="text-xl font-semibold text-zinc-300 mb-6 uppercase tracking-wider text-sm">tech skills</h4>
+            <div className="flex flex-wrap gap-2">
+              {techSkills.map((skill) => (
+                <Badge key={skill} variant="outline" className="bg-white/5 border-white/10 text-zinc-400 hover:text-white hover:bg-white/10 transition-colors px-3 py-1">
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h4 className="text-xl font-semibold text-zinc-300 mb-6 uppercase tracking-wider text-sm">soft skills</h4>
+            <div className="flex flex-wrap gap-2">
+              {softSkills.map((skill) => (
+                <Badge key={skill} variant="outline" className="bg-white/5 border-white/10 text-zinc-400 px-3 py-1">
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="w-full max-w-5xl px-6 py-24 border-t border-white/5 mb-24">
+        <h3 className="text-3xl font-bold text-white mb-6">contact me</h3>
+        <p className="text-zinc-500 text-lg mb-12">
+          feel free to contact me at any time and via any method
+        </p>
+        <div className="flex items-center gap-8">
+          <a href="https://github.com/costitza" target="_blank" className="text-zinc-400 hover:text-white transition-colors">
+            <Github className="w-8 h-8" />
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+          <a href="https://www.linkedin.com/in/raul-ababei-28221838b/" target="_blank" className="text-zinc-400 hover:text-white transition-colors">
+            <Linkedin className="w-8 h-8" />
+          </a>
+          <a href="https://www.instagram.com/frosty.king_67/" target="_blank" className="text-zinc-400 hover:text-white transition-colors">
+            <Instagram className="w-8 h-8" />
+          </a>
+          <a href="mailto:ababeiraul13@gmail.com" className="text-zinc-400 hover:text-white transition-colors">
+            <Mail className="w-8 h-8" />
           </a>
         </div>
-      </main>
+      </section>
     </div>
-  );
+  )
 }

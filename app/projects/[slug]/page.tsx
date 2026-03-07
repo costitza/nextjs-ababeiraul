@@ -52,19 +52,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           back to projects
         </Link>
 
-        <div className="mb-12">
+        <div className="mb-12 text-center flex flex-col items-center">
           <Badge className="mb-3 bg-white/5 text-zinc-400 border border-white/10 rounded-sm px-2 py-0.5 text-[10px] uppercase tracking-tighter font-bold">
             {project.category}
           </Badge>
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">
             {project.title}
           </h1>
-          <p className="text-base text-zinc-500 leading-relaxed max-w-2xl mb-8">
+          <p className="text-base text-zinc-500 leading-relaxed max-w-xl">
             {project.description}
           </p>
 
           {project.image && (
-            <div className="max-w-xl rounded-xl overflow-hidden border border-white/5 bg-white/[0.02]">
+            <div className="max-w-xl w-full mx-auto rounded-xl overflow-hidden border border-white/5 bg-white/[0.02] mt-8">
               <Image 
                 src={project.image} 
                 alt={project.title}
@@ -80,12 +80,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         <div className="space-y-12">
           {project.content.map((section, index) => (
-            <section key={index} className="border-t border-white/5 pt-8 first:border-0 first:pt-0">
-              <h2 className="text-[11px] font-black text-white/30 mb-6 uppercase tracking-[0.2em]">
+            <section key={index} className="border-t border-white/5 pt-10 first:border-0 first:pt-0">
+              <h2 className="text-[11px] font-black text-white/30 mb-8 uppercase tracking-[0.2em] text-center">
                 {section.heading}
               </h2>
               
-              <div className="space-y-6 max-w-2xl">
+              <div className="space-y-6 max-w-xl mx-auto">
                 {section.text && (
                   <p className="text-zinc-400 text-[15px] leading-relaxed text-justify">
                     {section.text}
@@ -110,7 +110,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 )}
 
                 {section.image && (
-                  <div className="max-w-md my-8 rounded-lg overflow-hidden border border-white/5 bg-white/[0.01]">
+                  <div className="max-w-md w-full mx-auto my-10 rounded-lg overflow-hidden border border-white/5 bg-white/[0.01]">
                     <Image 
                       src={section.image} 
                       alt={section.heading}
@@ -124,7 +124,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 )}
 
                 {section.code && (
-                  <div className="mt-6">
+                  <div className="mt-8">
                     <pre className="p-4 rounded-md bg-white/[0.02] border border-white/5 overflow-x-auto text-[13px] text-zinc-400 font-mono leading-relaxed scrollbar-hide">
                       <code>{section.code}</code>
                     </pre>
@@ -140,7 +140,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 )}
 
                 {section.links && (
-                  <div className="flex flex-wrap gap-3 pt-4">
+                  <div className="flex flex-wrap gap-3 pt-6 justify-center">
                     {section.links.map((link, i) => (
                       <Button key={i} asChild variant="outline" className="h-8 bg-white/5 border-white/10 text-white hover:bg-white/10 rounded-sm px-4 text-xs font-bold uppercase tracking-wider">
                         <a href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">

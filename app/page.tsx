@@ -36,14 +36,14 @@ const TypewriterHeading = () => {
   }, [count, text.length])
 
   return (
-    <div className="flex items-center gap-1 mb-4">
-      <motion.h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white pb-1">
+    <div className="flex items-center gap-1 mb-6">
+      <motion.h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white pb-1">
         {displayText}
       </motion.h1>
       <motion.div
         animate={{ opacity: [0, 1, 0] }}
         transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-        className="w-1 h-10 sm:h-12 bg-zinc-400"
+        className="w-1.5 h-12 sm:h-16 bg-zinc-400"
       />
     </div>
   )
@@ -53,20 +53,20 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center">
       {/* Hero Section */}
-      <section className="w-full max-w-4xl px-6 pt-32 pb-16 flex flex-col items-center text-center sm:items-start sm:text-left">
+      <section className="w-full max-w-4xl px-6 pt-40 pb-20 flex flex-col items-center text-center sm:items-start sm:text-left">
         <TypewriterHeading />
-        <h2 className="text-lg sm:text-xl font-medium text-zinc-400 mb-6 uppercase tracking-widest">
+        <h2 className="text-xl sm:text-3xl font-medium text-zinc-400 mb-8 uppercase tracking-[0.15em]">
           welcome to my personal webpage
         </h2>
-        <p className="max-w-xl text-[15px] text-zinc-500 leading-relaxed">
+        <p className="max-w-xl text-base text-zinc-500 leading-relaxed">
           Aspiring Full-Stack Web Developer | Building cool things for the web and others | Turning ideas into digital reality
         </p>
       </section>
 
       {/* About Section */}
-      <section id="about" className="w-full max-w-4xl px-6 py-16 border-t border-white/5">
-        <h3 className="text-[11px] font-black text-white/30 mb-8 uppercase tracking-[0.2em]">about me</h3>
-        <div className="space-y-4 text-zinc-400 text-[15px] leading-relaxed max-w-3xl">
+      <section id="about" className="w-full max-w-4xl px-6 py-20 border-t border-white/5">
+        <h3 className="text-sm font-black text-white/40 mb-10 uppercase tracking-[0.3em]">about me</h3>
+        <div className="space-y-6 text-zinc-400 text-base leading-relaxed max-w-3xl">
           <p>
             I am a first year <a href="https://fmi.unibuc.ro/" className="text-white hover:underline transition-all">@unibuc fmi</a> student, majoring in computer science.
           </p>
@@ -80,8 +80,8 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="w-full max-w-4xl px-6 py-16 border-t border-white/5">
-        <h3 className="text-[11px] font-black text-white/30 mb-8 uppercase tracking-[0.2em]">projects</h3>
+      <section id="projects" className="w-full max-w-4xl px-6 py-20 border-t border-white/5">
+        <h3 className="text-sm font-black text-white/40 mb-10 uppercase tracking-[0.3em]">projects</h3>
         <div className="flex flex-wrap gap-3">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} />
@@ -90,24 +90,24 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="w-full max-w-4xl px-6 py-16 border-t border-white/5">
-        <h3 className="text-[11px] font-black text-white/30 mb-8 uppercase tracking-[0.2em]">skills</h3>
+      <section id="skills" className="w-full max-w-4xl px-6 py-20 border-t border-white/5">
+        <h3 className="text-sm font-black text-white/40 mb-10 uppercase tracking-[0.3em]">skills</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
-            <h4 className="text-[10px] font-bold text-zinc-500 mb-6 uppercase tracking-widest">tech skills</h4>
+            <h4 className="text-xs font-bold text-zinc-500 mb-6 uppercase tracking-widest">tech skills</h4>
             <div className="flex flex-wrap gap-2">
               {techSkills.map((skill) => (
-                <Badge key={skill} variant="outline" className="bg-white/[0.03] border-white/5 text-zinc-400 hover:text-white hover:bg-white/10 transition-colors px-2 py-0.5 text-[11px] rounded-sm">
+                <Badge key={skill} variant="outline" className="bg-white/[0.03] border-white/5 text-zinc-400 hover:text-white hover:bg-white/10 transition-colors px-3 py-1 text-[12px] rounded-sm">
                   {skill}
                 </Badge>
               ))}
             </div>
           </div>
           <div>
-            <h4 className="text-[10px] font-bold text-zinc-500 mb-6 uppercase tracking-widest">soft skills</h4>
+            <h4 className="text-xs font-bold text-zinc-500 mb-6 uppercase tracking-widest">soft skills</h4>
             <div className="flex flex-wrap gap-2">
               {softSkills.map((skill) => (
-                <Badge key={skill} variant="outline" className="bg-white/[0.03] border-white/5 text-zinc-400 px-2 py-0.5 text-[11px] rounded-sm">
+                <Badge key={skill} variant="outline" className="bg-white/[0.03] border-white/5 text-zinc-400 px-3 py-1 text-[12px] rounded-sm">
                   {skill}
                 </Badge>
               ))}
@@ -117,23 +117,23 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="w-full max-w-4xl px-6 py-16 border-t border-white/5 mb-16">
-        <h3 className="text-[11px] font-black text-white/30 mb-8 uppercase tracking-[0.2em]">contact me</h3>
-        <p className="text-zinc-500 text-[14px] mb-8 italic">
+      <section id="contact" className="w-full max-w-4xl px-6 py-20 border-t border-white/5 mb-20">
+        <h3 className="text-sm font-black text-white/40 mb-10 uppercase tracking-[0.3em]">contact me</h3>
+        <p className="text-zinc-500 text-base mb-10 italic">
           feel free to contact me at any time and via any method
         </p>
         <div className="flex items-center gap-6">
           <a href="https://github.com/costitza" target="_blank" className="text-zinc-500 hover:text-white transition-all transform hover:scale-110">
-            <Github className="w-6 h-6" />
+            <Github className="w-8 h-8" />
           </a>
           <a href="https://www.linkedin.com/in/raul-ababei-28221838b/" target="_blank" className="text-zinc-500 hover:text-white transition-all transform hover:scale-110">
-            <Linkedin className="w-6 h-6" />
+            <Linkedin className="w-8 h-8" />
           </a>
           <a href="https://www.instagram.com/frosty.king_67/" target="_blank" className="text-zinc-500 hover:text-white transition-all transform hover:scale-110">
-            <Instagram className="w-6 h-6" />
+            <Instagram className="w-8 h-8" />
           </a>
           <a href="mailto:ababeiraul13@gmail.com" className="text-zinc-500 hover:text-white transition-all transform hover:scale-110">
-            <Mail className="w-6 h-6" />
+            <Mail className="w-8 h-8" />
           </a>
         </div>
       </section>

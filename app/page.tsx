@@ -66,18 +66,16 @@ export default function Home() {
       {/* About Section */}
       <section id="about" className="w-full max-w-4xl px-6 py-16 border-t border-white/5">
         <h3 className="text-[11px] font-black text-white/30 mb-8 uppercase tracking-[0.2em]">about me</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <div className="space-y-4 text-zinc-400 text-[15px] leading-relaxed">
-            <p>
-              I am a first year <a href="https://fmi.unibuc.ro/" className="text-white hover:underline transition-all">@unibuc fmi</a> student, majoring in computer science.
-            </p>
-            <p>
-              I am passionate and hardworking, especially trying to learn new skills. I like bouldering and I am motivated to build and achieve my goals.
-            </p>
-            <p>
-              You can find more about me and my background in my <a href="/resume.pdf" target="_blank" className="text-white hover:underline transition-all underline-offset-4">resume</a>.
-            </p>
-          </div>
+        <div className="space-y-4 text-zinc-400 text-[15px] leading-relaxed max-w-3xl">
+          <p>
+            I am a first year <a href="https://fmi.unibuc.ro/" className="text-white hover:underline transition-all">@unibuc fmi</a> student, majoring in computer science.
+          </p>
+          <p>
+            I am passionate and hardworking, especially trying to learn new skills. I like bouldering and I am motivated to build and achieve my goals.
+          </p>
+          <p>
+            You can find more about me and my background in my <a href="/resume.pdf" target="_blank" className="text-white hover:underline transition-all underline-offset-4">resume</a>.
+          </p>
         </div>
       </section>
 

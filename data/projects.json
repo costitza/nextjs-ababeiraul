@@ -196,9 +196,21 @@
                 "text": "AMSH serves as a powerful demonstration of shell scripting capabilities, process management, and Linux system administration automation. It transforms the tedious task of manual mounting into a seamless, background operation."
             },
             {
+                "heading": "technical documentation (extract)",
+                "text": "The project is documented extensively in the official technical report. Key chapters include:",
+                "list": [
+                    "Problem Description: Addressing 'Workflow Friction' and 'Stale Mounts' in Linux systems.",
+                    "Solution Specification: Moving from reactive to 'Just-in-Time Mounting' and proactive 'Auto-Vindecare'.",
+                    "Modular Design: Separation of concerns between the Core Orchestrator (amsh.sh), Business Logic (mount_manager.sh), and UI/UX Layer (style.sh).",
+                    "Implementation Details: Advanced handling of path normalization, signal trapping (SIGINT), and persistent history logging."
+                ],
+                "subtext": "For a deep dive into the design patterns and test scenarios used, refer to the full PDF documentation."
+            },
+            {
                 "heading": "explore more",
                 "links": [
-                    { "label": "View on GitHub", "url": "https://github.com/costitza/amsh_itbi" }
+                    { "label": "View on GitHub", "url": "https://github.com/costitza/amsh_itbi" },
+                    { "label": "Full Documentation (PDF)", "url": "/resources/documentatie_amsh.pdf" }
                 ]
             }
         ]

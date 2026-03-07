@@ -2,36 +2,11 @@ import React from "react"
 import ProjectCard from "@/components/ProjectCard"
 import { Badge } from "@/components/ui/badge"
 import { Github, Linkedin, Instagram, Mail } from "lucide-react"
-
-const projects = [
-    {
-        "title": "Quest",
-        "category": "Robotics",
-        "description": "Innovative robotics project combining a drone with a rover.",
-        "link": "quest.html"
-    },
-    {
-        "title": "Udraw",
-        "category": "Software",
-        "description": "C# WinForms Drawing App with SQL Storage.",
-        "link": "udraw.html"
-    },
-    {
-        "title": "AutoMounterShell",
-        "category": "Software",
-        "description": "A shell wrapper for Linux where you can mount and unmount drives without commands.",
-        "link": "amsh.html"
-    },
-    {
-        "title": ".flux",
-        "category": "Software",
-        "description": "An AI-first engineering intelligence dashboard that gives your code a voice.",
-        "link": "dotflux.html"
-    }
-]
+import projects from "@/data/projects.json"
 
 const techSkills = [
-  "C++", "Python", "SQL", "JavaScript", "C#", "PHP", "Assembly", 
+...
+
   "Tailwind", "Node.js", "Flask", ".NET", "Spring Boot", "PostgreSQL", "Git"
 ]
 

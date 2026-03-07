@@ -1,6 +1,7 @@
 import React from "react"
 import { notFound } from "next/navigation"
 import projectsData from "@/data/projects.json"
+import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
@@ -23,6 +24,7 @@ interface Project {
   category: string
   description: string
   link: string
+  image?: string | null
   content: ProjectContent[]
 }
 
@@ -58,9 +60,20 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6">
             {project.title}
           </h1>
-          <p className="text-xl text-zinc-400 leading-relaxed">
+          <p className="text-xl text-zinc-400 leading-relaxed mb-8">
             {project.description}
           </p>
+
+          {project.image && (
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/10">
+              <Image 
+                src={project.image} 
+                alt={project.title}
+                fill
+                className="object-cover opacity-90"
+              />
+            </div>
+          )}
         </div>
 
         <div className="space-y-20">

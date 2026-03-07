@@ -4,6 +4,7 @@
         "category": "Robotics",
         "description": "Innovative robotics project combining a drone with a rover.",
         "link": "quest",
+        "image": "/resources/rover.jpeg",
         "content": [
             {
                 "heading": "introduction",
@@ -81,6 +82,7 @@
         "category": "Software",
         "description": "C# WinForms Drawing App with SQL Storage.",
         "link": "udraw",
+        "image": null,
         "content": [
             {
                 "heading": "overview",
@@ -149,6 +151,7 @@
         "category": "Software",
         "description": "A shell wrapper for Linux where you can mount and unmount drives without commands.",
         "link": "amsh",
+        "image": null,
         "content": [
             {
                 "heading": "overview",
@@ -202,6 +205,7 @@
         "category": "Software",
         "description": "An AI-first engineering intelligence dashboard that gives your code a voice.",
         "link": "dotflux",
+        "image": "/resources/dotflux_landing.png",
         "content": [
             {
                 "heading": "introduction",

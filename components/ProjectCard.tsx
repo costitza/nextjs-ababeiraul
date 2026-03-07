@@ -1,5 +1,6 @@
 import React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
@@ -8,6 +9,7 @@ interface Project {
   category: string
   description: string
   link: string
+  image?: string | null
 }
 
 const ProjectCard = ({ project }: { project: Project }) => {
@@ -16,7 +18,17 @@ const ProjectCard = ({ project }: { project: Project }) => {
       href={`/projects/${project.link}`}
       className="group"
     >
-      <Card className="h-full bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300 overflow-hidden cursor-pointer">
+      <Card className="h-full bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300 overflow-hidden cursor-pointer flex flex-col">
+        {project.image && (
+          <div className="relative w-full h-48 overflow-hidden">
+            <Image 
+              src={project.image} 
+              alt={project.title}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+            />
+          </div>
+        )}
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <CardTitle className="text-xl font-semibold text-white group-hover:text-zinc-200 transition-colors">

@@ -37,15 +37,20 @@ const TypewriterHeading = () => {
   }, [count, text.length])
 
   return (
-    <div className="flex items-center gap-1 mb-6">
-      <motion.h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white pb-1">
-        {displayText}
-      </motion.h1>
-      <motion.div
-        animate={{ opacity: [0, 1, 0] }}
-        transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-        className="w-1.5 h-12 sm:h-16 bg-zinc-400"
-      />
+    <div className="inline-grid grid-cols-1 grid-rows-1 items-center mb-6">
+      <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-transparent pb-1 select-none pointer-events-none col-start-1 row-start-1 whitespace-pre" aria-hidden="true">
+        {text}
+      </h1>
+      <div className="flex items-center gap-1 col-start-1 row-start-1">
+        <motion.h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white pb-1 whitespace-pre">
+          {displayText}
+        </motion.h1>
+        <motion.div
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+          className="w-1.5 h-12 sm:h-16 bg-zinc-400 shrink-0"
+        />
+      </div>
     </div>
   )
 }

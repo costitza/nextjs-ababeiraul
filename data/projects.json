@@ -233,8 +233,7 @@
             },
             {
                 "heading": "the problem & solution",
-                "text": "Engineering context is often scattered across code, chat logs, and call notes. AI agents typically act blindly without access to this historical data.",
-                "subtext": ".flux solves this by creating a \"God mode\" context layer. It captures:",
+                "text": "Engineering context is often scattered across code, chat logs, and call notes. AI agents typically act blindly without access to this historical data. .flux solves this by creating a \"God mode\" context layer. It captures:",
                 "list": [
                     "Code Metadata: PRs, commits, and file changes via GitHub.",
                     "Human Context: Voice calls and architectural decisions via ElevenLabs.",

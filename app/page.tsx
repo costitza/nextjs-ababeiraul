@@ -8,8 +8,9 @@ import projects from "@/data/projects.json"
 import { motion, useMotionValue, useTransform, animate } from "motion/react"
 
 const techSkills = [
-  "C++", "Python", "SQL", "JavaScript", "C#", "PHP", "Assembly", 
-  "Tailwind", "Node.js", "Flask", ".NET", "Spring Boot", "PostgreSQL", "Git"
+  "C++", "Python", "SQL", "JavaScript", "Typescript", "Bash scripting", "C#", "PHP", "Assemblyx86", "RISC-V",
+  "Tailwind", "Node.js", "PyTorch", "Flask", ".NET", "Spring Boot", "NextJS", "PostgreSQL", "Git", "ML", "LLMs",
+  "Neural network", "Data analysis", "OOP"
 ]
 
 const softSkills = [
@@ -55,11 +56,11 @@ export default function Home() {
       {/* Hero Section */}
       <section className="w-full max-w-4xl px-6 pt-40 pb-20 flex flex-col items-center text-center sm:items-start sm:text-left">
         <TypewriterHeading />
-        <h2 className="text-xl sm:text-3xl font-medium text-zinc-400 mb-8 uppercase tracking-[0.15em]">
+        <h2 className="text-xl sm:text-3xl font-medium text-zinc-400 mb-8 tracking-[0.15em]">
           welcome to my personal webpage
         </h2>
         <p className="max-w-xl text-base text-zinc-500 leading-relaxed">
-          Aspiring Full-Stack Web Developer | Building cool things for the web and others | Turning ideas into digital reality
+          emerging AI/web dev | focused on building functional apps | passionate about LLMs and data analysis
         </p>
       </section>
 
@@ -71,7 +72,10 @@ export default function Home() {
             I am a first year <a href="https://fmi.unibuc.ro/" className="text-white hover:underline transition-all">@unibuc fmi</a> student, majoring in computer science.
           </p>
           <p>
-            I am passionate and hardworking, especially trying to learn new skills. I like bouldering and I am motivated to build and achieve my goals.
+            I am passionate and hardworking, especially trying to learn new skills. I also like bouldering and I am motivated to build and achieve my goals.
+          </p>
+          <p>
+            I like AI and ML, understanding the concepts behind and developing functional ideas with them.
           </p>
           <p>
             You can find more about me and my background in my <a href="/resume.pdf" target="_blank" className="text-white hover:underline transition-all underline-offset-4">resume</a>.

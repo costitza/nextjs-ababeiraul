@@ -65,7 +65,7 @@ export default function Home() {
           welcome to my personal webpage
         </h2>
         <p className="max-w-xl text-base text-zinc-500 leading-relaxed">
-          emerging AI/web dev | focused on building functional apps | passionate about LLMs and data analysis
+          emerging AI/software/web dev | focused on building functional apps | passionate about LLMs and data analysis
         </p>
       </section>
 

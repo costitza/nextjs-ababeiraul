@@ -68,13 +68,29 @@
                 ]
             },
             {
+                "heading": "Action Demos",
+                "text": "Watch Quest in action as it navigates terrain and demonstrates its dual-mode capabilities.",
+                "video": {
+                    "src": "/resources/rover.mp4",
+                    "muted": true
+                }
+            },
+            {
+                "heading": "Camera Perspective",
+                "text": "A glimpse through the OAK-D Lite camera, showing the real-time perspective and environmental awareness of the robot.",
+                "video": {
+                    "src": "/resources/camera.mp4",
+                    "forceMuted": true
+                }
+            },
+
+            {
                 "heading": "Conclusion",
                 "text": "Quest represents a fusion of creativity, engineering, and purpose — a machine built not just to demonstrate technical ability, but to save lives. Through the combination of robotics, AI, and intelligent control systems, Quest pushes the boundaries of what small-scale autonomous systems can achieve in emergency response."
             },
             {
                 "heading": "Explore More",
                 "links": [
-                    { "label": "Live Demo", "url": "https://your-demo-link.com" },
                     { "label": "Source Code", "url": "https://github.com/costitza/Quest" }
                 ]
             }

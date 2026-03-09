@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, ArrowLeft } from "lucide-react"
 import Link from "next/link"
+import VideoPlayer from "@/components/VideoPlayer"
 
 interface ProjectContent {
   heading: string
@@ -16,6 +17,14 @@ interface ProjectContent {
   additional_code?: string
   links?: { label: string; url: string }[]
   image?: string | null
+  video?: {
+    src: string
+    muted?: boolean
+    forceMuted?: boolean
+    autoPlay?: boolean
+    loop?: boolean
+    controls?: boolean
+  } | null
 }
 
 interface Project {
@@ -33,8 +42,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
+export default async function ProjectPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params
+  const { slug } = params
   const project = (projectsData as Project[]).find((p) => p.link === slug)
 
   if (!project) {
@@ -73,6 +83,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 sizes="100vw"
                 style={{ width: '100%', height: 'auto' }}
                 className="opacity-90 transition-all duration-500 block"
+                priority
               />
             </div>
           )}
@@ -123,6 +134,17 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   </div>
                 )}
 
+                {section.video && (
+                  <VideoPlayer 
+                    src={section.video.src}
+                    muted={section.video.muted}
+                    forceMuted={section.video.forceMuted}
+                    autoPlay={section.video.autoPlay}
+                    loop={section.video.loop}
+                    controls={section.video.controls}
+                  />
+                )}
+
                 {section.code && (
                   <div className="mt-10">
                     <pre className="p-6 rounded-md bg-white/[0.02] border border-white/5 overflow-x-auto text-[14px] text-zinc-400 font-mono leading-relaxed scrollbar-hide">
@@ -145,6 +167,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                       <Button key={i} asChild variant="outline" className="h-10 bg-white/5 border-white/10 text-white hover:bg-white/10 rounded-sm px-6 text-xs font-bold uppercase tracking-wider">
                         <a href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                           {link.label}
+                          {/* @ts-ignore */}
                           <ExternalLink className="w-3 h-3" />
                         </a>
                       </Button>

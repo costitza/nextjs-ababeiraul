@@ -91,7 +91,8 @@
             {
                 "heading": "Explore More",
                 "links": [
-                    { "label": "Source Code", "url": "https://github.com/costitza/Quest" }
+                    { "label": "Source Code", "url": "https://github.com/costitza/Quest" },
+                    { "label": "External Publication", "url": "https://community.infoeducatie.ro/t/quest-roboti-brasov-lucrari-2024-nationala/6063" }
                 ]
             }
         ]

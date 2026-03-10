@@ -292,7 +292,8 @@
             {
                 "heading": "explore more",
                 "links": [
-                    { "label": "View on Github", "url": "https://github.com/costitza/dotflox" }
+                    { "label": "View on Github", "url": "https://github.com/costitza/dotflox" },
+                    { "label": "AI Tinkerers Hackathon Entry", "url": "https://bucharest.aitinkerers.org/hackathons/h_VnaDazfvoi4/entries/ht_eXQP5hndxUw" }
                 ]
             }
         ]

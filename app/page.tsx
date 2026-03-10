@@ -10,7 +10,7 @@ import { motion, useMotionValue, useTransform, animate } from "motion/react"
 const techSkills = [
   "C++", "Python", "SQL", "JavaScript", "Typescript", "Bash scripting", "C#", "PHP", "Assemblyx86", "RISC-V",
   "Tailwind", "Node.js", "PyTorch", "Flask", ".NET", "Spring Boot", "NextJS", "PostgreSQL", "Git", "ML", "LLMs",
-  "Neural network", "Data analysis", "OOP"
+  "Neural network", "Data analysis", "OOP", "Algorithms", "Data structures"
 ]
 
 const softSkills = [
@@ -19,7 +19,7 @@ const softSkills = [
 ]
 
 const TypewriterHeading = () => {
-  const text = "hi, im Ababei Raul"
+  const text = "hi, im Raul Ababei"
   const count = useMotionValue(0)
   const rounded = useTransform(count, (latest) => Math.round(latest))
   const displayText = useTransform(rounded, (latest) => text.slice(0, latest))
@@ -137,9 +137,6 @@ export default function Home() {
           </a>
           <a href="https://www.linkedin.com/in/raul-ababei-28221838b/" target="_blank" className="text-zinc-500 hover:text-white transition-all transform hover:scale-110">
             <Linkedin className="w-8 h-8" />
-          </a>
-          <a href="https://www.instagram.com/frosty.king_67/" target="_blank" className="text-zinc-500 hover:text-white transition-all transform hover:scale-110">
-            <Instagram className="w-8 h-8" />
           </a>
           <a href="mailto:ababeiraul13@gmail.com" className="text-zinc-500 hover:text-white transition-all transform hover:scale-110">
             <Mail className="w-8 h-8" />

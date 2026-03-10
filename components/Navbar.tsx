@@ -69,8 +69,7 @@ const Navbar = () => {
           )}>
             {[
               { label: "Github", href: "https://github.com/costitza" },
-              { label: "LinkedIn", href: "https://www.linkedin.com/in/raul-ababei-28221838b/" },
-              { label: "Instagram", href: "https://www.instagram.com/frosty.king_67/" }
+              { label: "LinkedIn", href: "https://www.linkedin.com/in/raul-ababei-28221838b/" }
             ].map((item) => (
               <a 
                 key={item.label}

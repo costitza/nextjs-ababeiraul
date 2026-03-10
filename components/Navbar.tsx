@@ -69,12 +69,13 @@ const Navbar = () => {
           )}>
             {[
               { label: "Github", href: "https://github.com/costitza" },
-              { label: "LinkedIn", href: "https://www.linkedin.com/in/raul-ababei-28221838b/" }
+              { label: "LinkedIn", href: "https://www.linkedin.com/in/raul-ababei-28221838b/" },
+              { label: "Gmail", href: "mailto:ababeiraul13@gmail.com" }
             ].map((item) => (
               <a 
                 key={item.label}
                 href={item.href} 
-                target="_blank" 
+                target={item.href.startsWith('mailto') ? undefined : "_blank"} 
                 onClick={() => {
                   setActiveSection("contact")
                   setIsContactOpen(false)

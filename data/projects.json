@@ -8,7 +8,7 @@
         "content": [
             {
                 "heading": "introduction",
-                "text": "Quest is a multifunctional rescue robot designed to operate efficiently in critical and hard-to-reach environments. Developed by Raul-Costin Ababei and Alexandru-Lucian Motoașcă at Colegiul Național de Informatică “Grigore Moisil” Brașov, this project combines ground mobility and aerial versatility to assist in emergency missions such as locating missing persons, exploring caves, or supporting firefighting operations."
+                "text": "Quest is a multifunctional rescue robot designed to operate efficiently in critical and hard-to-reach environments. Developed by me and Alexandru-Lucian Motoașcă at Colegiul Național de Informatică “Grigore Moisil” Brașov, this project combines ground mobility and aerial versatility to assist in emergency missions such as locating missing persons, exploring caves, or supporting firefighting operations."
             },
             {
                 "heading": "motivation",
@@ -92,6 +92,7 @@
                 "heading": "Explore More",
                 "links": [
                     { "label": "Source Code", "url": "https://github.com/costitza/Quest" },
+                    { "label": "Technical Documentation (PDF)", "url": "/resources/Documentatie Quest final 2.0.pdf" },
                     { "label": "External Publication", "url": "https://community.infoeducatie.ro/t/quest-roboti-brasov-lucrari-2024-nationala/6063" }
                 ]
             }
@@ -175,7 +176,7 @@
         "content": [
             {
                 "heading": "header",
-                "code": "╔═════════════════════════════════════════════╗\n║                                             ║\n║          AUTO MOUNT SHELL (AMSH)            ║\n║            ITBI – Proiect 2025              ║\n║       By Ababei Raul & Iosub Dragos         ║\n║                                             ║\n╚═════════════════════════════════════════════╝"
+                "code": "╔═════════════════════════════════════════════╗\n║                                             ║\n║          AUTO MOUNT SHELL (AMSH)            ║\n║            ITBI – Proiect 2025              ║\n║       By me & Iosub Dragos                  ║\n║                                             ║\n╚═════════════════════════════════════════════╝"
             },
             {
                 "heading": "overview",

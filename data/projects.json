@@ -93,7 +93,8 @@
                 "links": [
                     { "label": "Source Code", "url": "https://github.com/costitza/Quest" },
                     { "label": "Technical Documentation (PDF)", "url": "/resources/Documentatie Quest final 2.0.pdf" },
-                    { "label": "External Publication", "url": "https://community.infoeducatie.ro/t/quest-roboti-brasov-lucrari-2024-nationala/6063" }
+                    { "label": "External Publication", "url": "https://community.infoeducatie.ro/t/quest-roboti-brasov-lucrari-2024-nationala/6063" },
+                    { "label": "School Spotlight (Facebook)", "url": "https://www.facebook.com/InfoMoisil/posts/pfbid02JMfUa4bWVsdE2GdrRLEhDYMKB7oieb5HG6U5ZGknWYsmZ9tcJc4XaaKGQ5CkN8U5l" }
                 ]
             }
         ]

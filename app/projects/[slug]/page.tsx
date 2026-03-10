@@ -24,6 +24,7 @@ interface ProjectContent {
     autoPlay?: boolean
     loop?: boolean
     controls?: boolean
+    showOpenButton?: boolean
   } | null
 }
 
@@ -142,6 +143,7 @@ export default async function ProjectPage(props: { params: Promise<{ slug: strin
                     autoPlay={section.video.autoPlay}
                     loop={section.video.loop}
                     controls={section.video.controls}
+                    showOpenButton={section.video.showOpenButton}
                   />
                 )}
 

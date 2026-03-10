@@ -11,6 +11,7 @@ interface VideoPlayerProps {
   autoPlay?: boolean
   loop?: boolean
   controls?: boolean
+  showOpenButton?: boolean
 }
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
@@ -20,6 +21,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   autoPlay = false,
   loop = true,
   controls = true,
+  showOpenButton = true,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -58,16 +60,14 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
           Your browser does not support the video tag.
         </video>
       </div>
-      <Button
-        asChild
-        variant="ghost"
-        className="text-zinc-500 hover:text-white text-[10px] uppercase tracking-widest font-bold h-8"
-      >
-        <a href={src} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-          <Play className="w-3 h-3" />
-          Open video in new tab
-        </a>
-      </Button>
+      {showOpenButton && (
+        <Button
+          asChild
+          variant="ghost"
+          className="text-zinc-500 hover:text-white text-[10px] uppercase tracking-widest font-bold h-8"
+        >
+        </Button>
+      )}
     </div>
   )
 }

@@ -72,7 +72,8 @@
                 "text": "Watch Quest in action as it navigates terrain and demonstrates its dual-mode capabilities.",
                 "video": {
                     "src": "/resources/rover.mp4",
-                    "muted": true
+                    "muted": true,
+                    "showOpenButton": false
                 }
             },
             {
@@ -80,7 +81,8 @@
                 "text": "A glimpse through the OAK-D Lite camera, showing the real-time perspective and environmental awareness of the robot.",
                 "video": {
                     "src": "/resources/camera.mp4",
-                    "forceMuted": true
+                    "forceMuted": true,
+                    "showOpenButton": false
                 }
             },
 

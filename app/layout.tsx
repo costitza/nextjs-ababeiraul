@@ -12,7 +12,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ababeiraul_site",
+  title: "raulababei.com",
   description: "Personal website about me and my work",
 };
 

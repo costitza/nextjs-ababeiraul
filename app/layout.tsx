@@ -13,7 +13,8 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: "raulababei.com",
-  description: "Personal website about me and my work",
+  description: "Portfolio of Raul Ababei",
+  keywords: ['Raul Ababei', 'Full-Stack Developer', 'Next.js', 'React', 'Portfolio', 'Software Engineer']
 };
 
 export default function RootLayout({

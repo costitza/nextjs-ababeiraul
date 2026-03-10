@@ -124,7 +124,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground min-h-screen;
+    @apply bg-background text-foreground min-h-screen overflow-x-hidden;
     background-image: linear-gradient(to bottom, var(--color-brand-start), var(--color-brand-end));
     background-attachment: fixed;
     letter-spacing: 0.02em;

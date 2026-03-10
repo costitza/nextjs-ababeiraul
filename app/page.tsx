@@ -37,18 +37,18 @@ const TypewriterHeading = () => {
   }, [count, text.length])
 
   return (
-    <div className="inline-grid grid-cols-1 grid-rows-1 items-center mb-6">
-      <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-transparent pb-1 select-none pointer-events-none col-start-1 row-start-1 whitespace-pre" aria-hidden="true">
+    <div className="inline-grid grid-cols-1 grid-rows-1 items-center mb-6 w-full overflow-hidden">
+      <h1 className="text-3xl min-[400px]:text-4xl min-[500px]:text-5xl sm:text-7xl font-bold tracking-tight text-transparent pb-1 select-none pointer-events-none col-start-1 row-start-1 whitespace-pre" aria-hidden="true">
         {text}
       </h1>
       <div className="flex items-center gap-1 col-start-1 row-start-1">
-        <motion.h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white pb-1 whitespace-pre">
+        <motion.h1 className="text-3xl min-[400px]:text-4xl min-[500px]:text-5xl sm:text-7xl font-bold tracking-tight text-white pb-1 whitespace-pre">
           {displayText}
         </motion.h1>
         <motion.div
           animate={{ opacity: [0, 1, 0] }}
           transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-          className="w-1.5 h-12 sm:h-16 bg-zinc-400 shrink-0"
+          className="w-1.5 h-8 min-[400px]:h-10 min-[500px]:h-12 sm:h-16 bg-zinc-400 shrink-0"
         />
       </div>
     </div>
@@ -59,7 +59,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center">
       {/* Hero Section */}
-      <section className="w-full max-w-4xl px-6 pt-40 pb-20 flex flex-col items-center text-center sm:items-start sm:text-left">
+      <section className="w-full max-w-4xl px-6 pt-40 pb-20 flex flex-col items-start text-left">
         <TypewriterHeading />
         <h2 className="text-xl sm:text-3xl font-medium text-zinc-400 mb-8 tracking-[0.15em]">
           welcome to my personal webpage

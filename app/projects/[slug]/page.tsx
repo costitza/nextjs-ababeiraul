@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { ExternalLink, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import VideoPlayer from "@/components/VideoPlayer"
+import ZoomableImage from "@/components/ZoomableImage"
 
 interface ProjectContent {
   heading: string
@@ -75,14 +76,10 @@ export default async function ProjectPage(props: { params: Promise<{ slug: strin
           </p>
 
           {project.image && (
-            <div className="max-w-xl w-full mx-auto rounded-xl overflow-hidden border border-white/5 bg-white/[0.02] mt-12">
-              <Image 
+            <div className="max-w-2xl w-full mx-auto rounded-xl overflow-hidden border border-white/5 bg-white/[0.02] mt-12">
+              <ZoomableImage 
                 src={project.image} 
                 alt={project.title}
-                width={0}
-                height={0}
-                sizes="100vw"
-                style={{ width: '100%', height: 'auto' }}
                 className="opacity-90 transition-all duration-500 block"
                 priority
               />
@@ -122,14 +119,10 @@ export default async function ProjectPage(props: { params: Promise<{ slug: strin
                 )}
 
                 {section.image && (
-                  <div className="max-w-md w-full mx-auto my-12 rounded-lg overflow-hidden border border-white/5 bg-white/[0.01]">
-                    <Image 
+                  <div className="max-w-xl w-full mx-auto my-12 rounded-lg overflow-hidden border border-white/5 bg-white/[0.01]">
+                    <ZoomableImage 
                       src={section.image} 
                       alt={section.heading}
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      style={{ width: '100%', height: 'auto' }}
                       className="opacity-80 block"
                     />
                   </div>

@@ -300,5 +300,69 @@
                 ]
             }
         ]
+    },
+    {
+        "title": "RippleTrace",
+        "category": "Software",
+        "description": "A Financial GraphRAG engine that predicts and visualizes global supply chain and market risks.",
+        "link": "rippletrace",
+        "image": "/resources/landingpage.png",
+        "content": [
+            {
+                "heading": "overview",
+                "text": "RippleTrace is a specialized Graph Retrieval-Augmented Generation (GraphRAG) platform designed to map and quantify 'ripple effects' in global financial markets. It transforms unstructured news and dense regulatory filings into a structured Neo4j Knowledge Graph to uncover non-obvious dependencies."
+            },
+            {
+                "heading": "technical architecture",
+                "text": "The system follows a 'Source-to-Graph-to-Inference' pipeline, optimized for low-latency financial intelligence:",
+                "list": [
+                    "Data Ingestion: High-throughput crawlers for Alpaca/Yahoo Finance and a specialized SEC 10-K 'Risk Factor' parser via sec-api.",
+                    "Graph Database: Neo4j acts as the primary source of truth, storing entities and high-dimensional relationships.",
+                    "Backend Engine: FastAPI with a modern lifespan architecture for efficient database connection pooling.",
+                    "Frontend: Next.js 15+ application utilizing react-force-graph for interactive supply chain visualization."
+                ],
+                "image": "/resources/dashboard.png"
+            },
+            {
+                "heading": "tiered model strategy",
+                "text": "RippleTrace employs a dual-model approach to balance speed and reasoning depth:",
+                "list": [
+                    "Llama 3.1 8B (Instant): Processes real-time news articles, prioritizing high throughput for daily event extraction.",
+                    "Llama 3.3 70B (Versatile): Leveraged for deep reasoning on SEC 10-K filings, where a large context window and complex entity resolution are required to parse dense legal language.",
+                    "Groq Inference: All extractions utilize ChatGroq for sub-second LLM response times."
+                ]
+            },
+            {
+                "heading": "knowledge graph ontology",
+                "text": "The system utilizes a custom financial ontology in src/extractor.py, moving beyond simple NER to risk-aware graph extraction:",
+                "list": [
+                    "Specialized Entities: Risk_Event (disasters, strikes), Raw_Material, Product, Financial_Metric, and Market_Index.",
+                    "Directed Relationships: VULNERABLE_TO / EXPOSED_TO (future risk mapping), IMPACTS_METRIC (linkage to quantitative data), and SUPPLIES / DEPENDS_ON (vertical supply chain backbone).",
+                    "Data Lineage: Every entity is connected to its source via a REPORTS_ON relationship, providing perfect traceability from a graph node back to the original article snippet."
+                ],
+                "image": "/resources/graph.png"
+            },
+            {
+                "heading": "graph database visualization",
+                "text": "The extracted knowledge is persisted in a Neo4j instance, enabling complex multi-hop queries to trace risk propagation through the global supply chain.",
+                "image": "/resources/rippletracedb.png"
+            },
+            {
+                "heading": "graphrag & traversal logic",
+                "text": "Instead of standard vector search, RippleTrace uses structural graph traversal for deterministic context retrieval:",
+                "list": [
+                    "2-Hop Neighborhoods: The API retrieves subgraphs centered around a ticker, filtering out 'Region' nodes to eliminate network noise while maintaining supply chain context.",
+                    "Structural Reasoning: The risk-assessment endpoint identifies exact dependency chains (e.g., 'Port Strike' -> 'Semi-conductor Plant' -> 'Tech Ticker') to feed the LLM hallucination-free context.",
+                    "Path Normalization: Custom Python logic in the API layer handles path reconstruction to ensure data integrity during complex multi-hop Cypher queries."
+                ]
+            },
+            {
+                "heading": "explore more",
+                "links": [
+                    { "label": "View Frontend Code", "url": "https://github.com/costitza/rippletrace/tree/main/frontend" },
+                    { "label": "View API & Backend Engine", "url": "https://github.com/costitza/rippletrace" }
+                ]
+            }
+        ]
     }
 ]

@@ -343,6 +343,11 @@
                 "image": "/resources/graph.png"
             },
             {
+                "heading": "graph database visualization",
+                "text": "The extracted knowledge is persisted in a Neo4j instance, enabling complex multi-hop queries to trace risk propagation through the global supply chain.",
+                "image": "/resources/rippletracedb.png"
+            },
+            {
                 "heading": "graphrag & traversal logic",
                 "text": "Instead of standard vector search, RippleTrace uses structural graph traversal for deterministic context retrieval:",
                 "list": [

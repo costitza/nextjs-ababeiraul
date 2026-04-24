@@ -300,5 +300,65 @@
                 ]
             }
         ]
+    },
+    {
+        "title": "RippleTrace",
+        "category": "Software",
+        "description": "An AI-powered application that predicts and visualizes global supply chain and stock market risks using GraphRAG.",
+        "link": "rippletrace",
+        "image": "/resources/landingpage.png",
+        "content": [
+            {
+                "heading": "overview",
+                "text": "RippleTrace is a full-stack AI application designed to predict and visualize how localized geopolitical events, environmental disasters, or supply chain bottlenecks create chain reactions across global stock markets.",
+                "subtext": "By ingesting live financial news and SEC risk disclosures, the system builds a dynamic Knowledge Graph, uncovering hidden dependencies between raw materials, manufacturing facilities, companies, and their publicly traded stocks."
+            },
+            {
+                "heading": "tech stack & architecture",
+                "text": "The project is built on a highly modular architecture, combining modern web frameworks with advanced graph databases and LLM orchestration:",
+                "list": [
+                    "Frontend: Next.js (React) with TypeScript, Tailwind CSS, Shadcn/ui, and interactive graph rendering.",
+                    "Backend: FastAPI (Python) with LangChain for managing LLM graph extraction and Cypher query generation.",
+                    "Database: Neo4j (Graph Database) for storing complex, multi-hop relationships (e.g., SUPPLIES, IMPACTED_BY, COMPETES_WITH).",
+                    "AI Engine: Blazing-fast inference via Groq using Llama 3.1 (8B) for real-time news extraction and Llama 3.3 (70B) for deep reasoning on dense SEC filings."
+                ],
+                "image": "/resources/dashboard.png"
+            },
+            {
+                "heading": "data pipeline & workflow",
+                "text": "RippleTrace employs a three-phase data ingestion pipeline to continuously feed and update its Neo4j knowledge graph:",
+                "list": [
+                    "Database Seeding: Pre-populating the database with 'Anchor Nodes' (Companies, Sectors, Regions) using the yfinance API.",
+                    "Structural Risk Mapping: Leveraging the sec-api to fetch 'Item 1A: Risk Factors' from corporate 10-K filings to map long-term baseline vulnerabilities.",
+                    "Breaking News Ingestion: Daily fetches from Alpaca and Yahoo Finance. Articles are processed via LangChain's LLMGraphTransformer to format NLP outputs directly into graph nodes and edges."
+                ]
+            },
+            {
+                "heading": "core logic: graphrag",
+                "text": "Instead of relying on a standard vector database, RippleTrace pioneers the use of Graph Retrieval-Augmented Generation (GraphRAG) for financial analysis.",
+                "list": [
+                    "Ingest: News events and legal filings are processed into structured JSON entities.",
+                    "Graph Update: The graph connects events (e.g., 'Factory Fire') to specific facilities, which supply companies trading under specific stock tickers.",
+                    "Query & Answer: Cypher queries traverse these exact dependency paths, feeding the LLM hallucination-free context to generate highly accurate risk assessments."
+                ],
+                "image": "/resources/graph.png"
+            },
+            {
+                "heading": "key features & utility",
+                "text": "By transforming unstructured financial data into structured intelligence, RippleTrace provides unprecedented market visibility:",
+                "list": [
+                    "Dependency Discovery: Reveals non-obvious links, such as how a regional drought in South America affects a European auto manufacturer's stock.",
+                    "Automated Risk Tagging: Breaking news is automatically linked to your specific monitored portfolio of tickers.",
+                    "What-If Simulations: Capable of tracing the secondary and tertiary victims of simulated market disruptions."
+                ]
+            },
+            {
+                "heading": "explore more",
+                "links": [
+                    { "label": "View Frontend Code", "url": "https://github.com/costitza/rippletrace/tree/main/frontend" },
+                    { "label": "View API & Backend Engine", "url": "https://github.com/costitza/rippletrace" }
+                ]
+            }
+        ]
     }
 ]

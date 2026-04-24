@@ -306,7 +306,7 @@
         "category": "Software",
         "description": "A Financial GraphRAG engine that predicts and visualizes global supply chain and market risks.",
         "link": "rippletrace",
-        "image": "/resources/landingpage.png",
+        "image": "/resources/landingpage.PNG",
         "content": [
             {
                 "heading": "overview",
@@ -321,7 +321,7 @@
                     "Backend Engine: FastAPI with a modern lifespan architecture for efficient database connection pooling.",
                     "Frontend: Next.js 15+ application utilizing react-force-graph for interactive supply chain visualization."
                 ],
-                "image": "/resources/dashboard.png"
+                "image": "/resources/dashboard.PNG"
             },
             {
                 "heading": "tiered model strategy",
@@ -340,7 +340,7 @@
                     "Directed Relationships: VULNERABLE_TO / EXPOSED_TO (future risk mapping), IMPACTS_METRIC (linkage to quantitative data), and SUPPLIES / DEPENDS_ON (vertical supply chain backbone).",
                     "Data Lineage: Every entity is connected to its source via a REPORTS_ON relationship, providing perfect traceability from a graph node back to the original article snippet."
                 ],
-                "image": "/resources/graph.png"
+                "image": "/resources/graph.PNG"
             },
             {
                 "heading": "graph database visualization",

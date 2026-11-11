@@ -364,5 +364,72 @@
                 ]
             }
         ]
+    },
+    {
+        "title": "AdReverse AI",
+        "category": "Software",
+        "description": "Autonomous competitor ad reverse-engineering and UGC counter-campaign synthesis studio.",
+        "link": "adreverse",
+        "image": "/resources/adreverse.png",
+        "content": [
+            {
+                "heading": "introduction",
+                "text": "AdReverse AI is an autonomous competitor intelligence and counter-campaign studio built during the ITFest Adobe 12-hour Hackathon. Designed for performance marketers and direct-to-consumer (DTC) brands, it transforms the lengthy, expensive process of competitor creative audits into an automated seconds-long workflow.",
+                "subtext": "Instead of manual spreadsheet analysis, the platform crawls top rivals in any niche, reverse-engineers their highest-converting ad hooks across Meta and TikTok, exposes offer vulnerabilities, and synthesizes ready-to-record UGC counter-campaigns."
+            },
+            {
+                "heading": "architecture & monorepo structure",
+                "text": "AdReverse is architected as a contract-first monorepo, establishing strict end-to-end type safety between the client and server via a single source of truth in the shared contracts layer.",
+                "code": "adreverse/\n├── shared/         # Single source of truth: TypeScript data contracts & mock fixtures\n│   └── types.ts    # CamelCase interfaces shared across Next.js and FastAPI\n├── back/           # Asynchronous Python FastAPI backend\n│   ├── app/\n│   │   ├── routers/   # REST endpoints (brand, discovery, ads, campaign)\n│   │   ├── schemas/   # Pydantic V2 domain models with CamelModel aliases\n│   │   └── services/  # AI inference, LangChain orchestrator, Supabase persistence\n│   └── main.py     # FastAPI entrypoint\n└── front/          # Next.js 16 App Router frontend\n    └── src/\n        ├── app/        # App Router pages (/ and /dashboard) & Clerk auth\n        └── components/ # 4-Step workflow modules (Onboarding, Radar, Analysis, Studio)",
+                "subtext": "All shared primitives and response shapes maintain strict camelCase properties, ensuring seamless JSON serialization between Next.js client components and Python FastAPI endpoints."
+            },
+            {
+                "heading": "the 4-step intelligence loop",
+                "text": "The platform automates competitive intelligence through an end-to-end 4-step reactive loop:",
+                "list": [
+                    "Step 1 — Brand Onboarding & Positioning: Ingests brand domain, target demographics, customer tension points, and unique selling propositions (USPs) into user-isolated vaults.",
+                    "Step 2 — Competitor Radar & Market Discovery: Autonomously scans vertical rivals using Tavily Search API and Jina Reader, calculating market share tiers and estimated reach scores.",
+                    "Step 3 — Creative Hook & Vulnerability Deconstruction: Breaks down active competitor ads into 3-second hook types, psychological mechanisms, and core offer vulnerabilities (e.g. hidden fees, weak guarantees).",
+                    "Step 4 — Counter-Campaign Studio & UGC Storyboards: Synthesizes high-converting counter-ads across three strategic angles (Direct Comparison, Problem Agitation, Social Proof) with second-by-second UGC storyboards."
+                ]
+            },
+            {
+                "heading": "concurrent execution & latency optimization",
+                "text": "To eliminate latency bottlenecks when synthesizing multi-angle campaigns and frame-by-frame UGC storyboards, AdReverse executes LLM calls concurrently via asyncio.gather. This reduced full multi-angle campaign generation latency from over 90 seconds to under 3.5 seconds.",
+                "code": "# Generating 3 strategic angles concurrently in back/app/services/campaign_service.py\ntasks = [\n    _generate_angle_campaign(angle)\n    for angle in requested_angles\n]\nresults = await asyncio.gather(*tasks, return_exceptions=True)\n\nfor res in results:\n    if isinstance(res, tuple) and res[0] and res[1]:\n        campaign, strategy = res\n        generated_campaigns.append(campaign)\n        adaptation_strategies.append(strategy)",
+                "subtext": "Each angle produces tailored ad copy, art director briefs, visual concepts, and second-by-second UGC video creator scripts simultaneously."
+            },
+            {
+                "heading": "fault-tolerant tiered ai inference",
+                "text": "In hackathon and production environments, rate limits and model downtime can disrupt the user experience. AdReverse implements a multi-tier fallback pipeline using LangChain, prioritizing ultra-low latency Groq models with seamless automatic failover to Google Gemini.",
+                "code": "# back/app/services/ai_service.py\ndef get_llm():\n    primary = ChatGroq(\n        model=\"openai/gpt-oss-20b\",\n        api_key=settings.GROQ_API_KEY.strip(),\n        temperature=0.2,\n        timeout=15,\n    )\n    fallback_models = [\n        ChatGroq(model=\"openai/gpt-oss-120b\", timeout=15),\n        ChatGroq(model=\"qwen/qwen3.8-27b\", timeout=15),\n        ChatGoogleGenerativeAI(model=\"gemini-3.5-flash-lite\", timeout=15),\n        ChatGoogleGenerativeAI(model=\"gemini-3.8-flash\", timeout=15),\n    ]\n    return primary.with_fallbacks(fallback_models)",
+                "subtext": "Primary inference runs on Groq in ~0.3s, cascading down to secondary models and Google Gemini without throwing 500 errors to the client."
+            },
+            {
+                "heading": "ugc storyboard & vulnerability schema",
+                "text": "The core deliverable of AdReverse is a structured, production-ready UGC storyboard designed for short-form video (TikTok & 9:16 Instagram Reels), linking exposed rival vulnerabilities directly to creator scripts.",
+                "code": "// Frame-by-frame storyboard structure from /shared/types.ts\nexport interface UgcStoryboardFrame {\n  second: number;          // e.g. 0, 3, 7, 15\n  visualFrame: string;     // Creator action, split-screen comparison, b-roll\n  audioScript: string;     // Spoken voiceover or direct-to-camera hook\n  textOverlay?: string;    // Punchy on-screen caption hook\n  transitionNote?: string; // Quick cut, zoom punch-in, match cut\n}",
+                "subtext": "Every storyboard includes time-stamped visual framing, spoken dialogue, on-screen text overlays, and camera transitions so creators can film immediately."
+            },
+            {
+                "heading": "tech stack",
+                "list": [
+                    "Frontend: Next.js 16 (App Router), Turbopack, React 19, Tailwind CSS, Radix UI Primitives, Lucide Icons.",
+                    "Backend: FastAPI (Python 3.12, fully async), Pydantic V2 with CamelModel serialization.",
+                    "AI & Orchestration: Groq (ultra-low latency inference), LangChain with multi-cloud fallbacks (Google Gemini), Tavily Search API, Jina Reader.",
+                    "Database & Auth: Supabase (PostgreSQL with JSONB caching <50ms), Clerk Authentication (Multi-brand vaults & user isolation)."
+                ]
+            },
+            {
+                "heading": "conclusion",
+                "text": "Built under the pressure of a 12-hour hackathon at ITFest Adobe, AdReverse AI demonstrates how autonomous multi-agent pipelines and contract-first architecture can democratize competitive intelligence. By bridging raw web crawling, psychological hook deconstruction, and instant creative synthesis, it gives brands an unfair advantage in performance marketing."
+            },
+            {
+                "heading": "explore more",
+                "links": [
+                    { "label": "View on GitHub", "url": "https://github.com/costitza/adreverse" }
+                ]
+            }
+        ]
     }
 ]

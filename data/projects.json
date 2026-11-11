@@ -85,7 +85,6 @@
                     "showOpenButton": false
                 }
             },
-
             {
                 "heading": "Conclusion",
                 "text": "Quest represents a fusion of creativity, engineering, and purpose — a machine built not just to demonstrate technical ability, but to save lives. Through the combination of robotics, AI, and intelligent control systems, Quest pushes the boundaries of what small-scale autonomous systems can achieve in emergency response."
@@ -93,10 +92,247 @@
             {
                 "heading": "Explore More",
                 "links": [
-                    { "label": "Source Code", "url": "https://github.com/costitza/Quest" },
-                    { "label": "Technical Documentation (PDF)", "url": "/resources/Documentatie Quest final 2.0.pdf" },
-                    { "label": "External Publication", "url": "https://community.infoeducatie.ro/t/quest-roboti-brasov-lucrari-2024-nationala/6063" },
-                    { "label": "School Spotlight (Facebook)", "url": "https://www.facebook.com/InfoMoisil/posts/pfbid02JMfUa4bWVsdE2GdrRLEhDYMKB7oieb5HG6U5ZGknWYsmZ9tcJc4XaaKGQ5CkN8U5l" }
+                    {
+                        "label": "Source Code",
+                        "url": "https://github.com/costitza/Quest"
+                    },
+                    {
+                        "label": "Technical Documentation (PDF)",
+                        "url": "/resources/Documentatie Quest final 2.0.pdf"
+                    },
+                    {
+                        "label": "External Publication",
+                        "url": "https://community.infoeducatie.ro/t/quest-roboti-brasov-lucrari-2024-nationala/6063"
+                    },
+                    {
+                        "label": "School Spotlight (Facebook)",
+                        "url": "https://www.facebook.com/InfoMoisil/posts/pfbid02JMfUa4bWVsdE2GdrRLEhDYMKB7oieb5HG6U5ZGknWYsmZ9tcJc4XaaKGQ5CkN8U5l"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "AdReverse AI",
+        "category": "Software",
+        "description": "Autonomous competitor ad reverse-engineering and UGC counter-campaign synthesis studio.",
+        "link": "adreverse",
+        "image": "/resources/adreverse.png",
+        "content": [
+            {
+                "heading": "introduction",
+                "text": "AdReverse AI is an end-to-end competitive intelligence and counter-advertising engine built during the ITFest Adobe 12-hour Hackathon. Designed for performance marketers and direct-to-consumer (DTC) brands, it automates the traditional weeks-long creative audit into an autonomous, real-time pipeline that deconstructs competitor scaling strategies and generates production-ready counter-campaigns in seconds.",
+                "subtext": "Instead of static spreadsheets, the system crawls live competitor creatives across Meta and TikTok, pinpoints their underlying psychological mechanisms and offer weaknesses, and synthesizes high-converting counter-ads complete with frame-by-frame UGC creator scripts."
+            },
+            {
+                "heading": "architecture & monorepo structure",
+                "text": "AdReverse is built as a contract-first monorepo, enforcing strict type safety across both frontend and backend layers via a centralized contracts package in /shared.",
+                "code": "adreverse/\n├── shared/         # Single source of truth: TypeScript data contracts & mock fixtures\n│   └── types.ts    # CamelCase interfaces shared across Next.js and FastAPI\n├── back/           # Asynchronous Python FastAPI backend\n│   ├── app/\n│   │   ├── routers/   # REST endpoints (brand, discovery, ads, campaign)\n│   │   ├── schemas/   # Pydantic V2 domain models with CamelModel aliases\n│   │   └── services/  # AI inference, LangChain orchestrator, Supabase persistence\n│   └── main.py     # FastAPI entrypoint\n└── front/          # Next.js 16 App Router frontend\n    └── src/\n        ├── app/        # App Router pages (/ and /dashboard) & Clerk auth\n        └── components/ # 4-Step workflow modules (Onboarding, Radar, Analysis, Studio)",
+                "subtext": "By maintaining strict camelCase properties in all Pydantic schemas and TypeScript models, JSON payloads serialize seamlessly between Next.js client components and FastAPI endpoints without manual field translation."
+            },
+            {
+                "heading": "the ai pipeline: from live crawl to synthesis",
+                "text": "The core of AdReverse is a reactive, multi-stage AI workflow engineered for low-latency market analysis and high-fidelity creative synthesis. The architecture links live web scraping with parallelized LLM reasoning across four distinct phases:",
+                "list": [
+                    "1. Real-time Ingestion (Jina Reader & Tavily API): When a brand domain is onboarded, Jina Reader (https://r.jina.ai/) strips boilerplate HTML to extract clean markdown, while Tavily Search API runs targeted search queries across live Meta Ad Library and SERP records.",
+                    "2. Competitor Radar & Market Discovery: Tavily web context is fed into LangChain's structured output model (Pydantic V2), identifying top rivals, market share tiers (dominant, challenger, niche), active channels, and opportunity gaps.",
+                    "3. Concurrent Ad Deconstruction (asyncio.gather): Active competitor creatives are scraped and processed simultaneously across asynchronous worker pools, deconstructing hooks, emotional triggers, and vulnerability gaps in parallel.",
+                    "4. Multi-Angle Counter-Campaign Synthesis: Once vulnerabilities are extracted, concurrent LLM workers synthesize three distinct counter-campaign angles (Direct Comparison, Problem Agitation, Social Proof) alongside frame-by-frame UGC storyboards in under 3.5 seconds."
+                ]
+            },
+            {
+                "heading": "competitor radar & market discovery",
+                "text": "The discovery engine continuously scans the target vertical. It retrieves active competitors, quantifies their market share tier, and computes an Estimated Reach Score (0–100%) alongside active media channels across Meta, Instagram, and TikTok.",
+                "subtext": "The platform analyzes cross-channel competitor saturation to uncover blind spots and opportunity gaps before generating ad counter-attacks.",
+                "image": "/resources/adreverse_competition.png"
+            },
+            {
+                "heading": "concurrent ad scraping & reverse-engineering",
+                "text": "Rather than evaluating ads sequentially, the Ad Breakdown engine uses Python's asyncio.gather to dispatch independent extraction tasks for every creative unit in parallel. Each ad is dissected through a rigorous performance marketing lens:",
+                "list": [
+                    "3-Second Hook Extraction: Identifies whether the opening leverages a bold statement, pattern interrupt, or problem agitation.",
+                    "Psychological Mechanism: Analyzes how the competitor promises resolution (e.g. proprietary formulations, speed, convenience).",
+                    "Offer Structure: Parses pricing, bundle incentives, guarantees, or hidden fees.",
+                    "Vulnerability Gap Mining: Exposes strategic flaws (such as unverified claims, subscription lock-ins, or premium markups) ready for targeted counter-messaging."
+                ],
+                "code": "# Parallel ad deconstruction in back/app/services/ads_service.py\nasync def _deconstruct_ad(ad: CompetitorAd) -> AdAnalysisResult:\n    prompt = f\"\"\"Deconstruct competitor ad for {competitor_name}:\nHeadline: {ad.headline}\nCopy: {ad.ad_copy}\nPlatform: {ad.platform}\nExtract: hook, hookType, painPoint, mechanism, offerStructure, vulnerabilityGap, effectivenessScore.\"\"\"\n    res = await llm.ainvoke(prompt)\n    breakdown = AdBreakdown.model_validate(json.loads(extract_json(res)))\n    return AdAnalysisResult(ad=ad, breakdown=breakdown, analysed_at=now_iso)\n\n# Dispatch all creatives concurrently\ntasks = [_deconstruct_ad(ad) for ad in ads_to_analyse]\nanalyses: List[AdAnalysisResult] = await asyncio.gather(*tasks)",
+                "image": "/resources/adreverse_ads.png"
+            },
+            {
+                "heading": "multi-angle campaign synthesis & ugc storyboards",
+                "text": "Once competitor vulnerabilities are identified, the Campaign Studio synthesizes counter-strategies across three distinct psychological angles concurrently: Direct Comparison, Problem Agitation, and Social Proof.",
+                "code": "# back/app/services/campaign_service.py\ntasks = [\n    _generate_angle_campaign(angle)\n    for angle in [\"direct_comparison\", \"problem_agitation\", \"social_proof_reviews\"]\n]\nresults = await asyncio.gather(*tasks, return_exceptions=True)\n\nfor campaign, strategy in results:\n    generated_campaigns.append(campaign)\n    adaptation_strategies.append(strategy)",
+                "subtext": "Running angle generation concurrently dropped full campaign synthesis latency from 90+ seconds down to under 3.5 seconds."
+            },
+            {
+                "heading": "fault-tolerant tiered inference pipeline",
+                "text": "To guarantee reliability and eliminate downtime during intense hackathon demos or production spikes, AdReverse employs a multi-tier fallback pipeline with LangChain. Requests route first to ultra-low latency Groq models and automatically cascade to Google Gemini if rate limits occur.",
+                "code": "# back/app/services/ai_service.py\ndef get_llm():\n    primary = ChatGroq(\n        model=\"openai/gpt-oss-20b\",\n        api_key=settings.GROQ_API_KEY.strip(),\n        temperature=0.2,\n        timeout=15,\n    )\n    fallback_models = [\n        ChatGroq(model=\"openai/gpt-oss-120b\", timeout=15),\n        ChatGroq(model=\"qwen/qwen3.8-27b\", timeout=15),\n        ChatGoogleGenerativeAI(model=\"gemini-3.5-flash-lite\", timeout=15),\n        ChatGoogleGenerativeAI(model=\"gemini-3.8-flash\", timeout=15),\n    ]\n    return primary.with_fallbacks(fallback_models)",
+                "subtext": "Primary inference runs on Groq in ~0.3s, cascading down to secondary models and Google Gemini without throwing 500 errors to the client."
+            },
+            {
+                "heading": "frame-by-frame ugc storyboard engine",
+                "text": "The final deliverable bridges AI strategy with real-world production. For every campaign angle, the studio generates an actionable UGC storyboard formatted specifically for TikTok and 9:16 Instagram Reels.",
+                "code": "// Frame-by-frame storyboard structure from /shared/types.ts\nexport interface UgcStoryboardFrame {\n  second: number;          // e.g. 0, 3, 7, 15\n  visualFrame: string;     // Creator action, split-screen comparison, b-roll\n  audioScript: string;     // Spoken voiceover or direct-to-camera hook\n  textOverlay?: string;    // Punchy on-screen caption hook\n  transitionNote?: string; // Quick cut, zoom punch-in, match cut\n}",
+                "subtext": "Includes precise time-stamps, visual directions, audio scripts, and transition cues, enabling creators to film counter-ads immediately without additional scriptwriting."
+            },
+            {
+                "heading": "tech stack",
+                "list": [
+                    "Frontend: Next.js 16 (App Router), Turbopack, React 19, Tailwind CSS, Radix UI Primitives, Lucide Icons.",
+                    "Backend: FastAPI (Python 3.12, fully async), Pydantic V2 with CamelModel serialization.",
+                    "AI & Orchestration: Groq (ultra-low latency inference), LangChain with multi-cloud fallbacks (Google Gemini), Tavily Search API, Jina Reader.",
+                    "Database & Auth: Supabase (PostgreSQL with JSONB caching <50ms), Clerk Authentication (Multi-brand vaults & user isolation)."
+                ]
+            },
+            {
+                "heading": "conclusion",
+                "text": "Built under the pressure of a 12-hour hackathon at ITFest Adobe, AdReverse AI proves how autonomous multi-agent pipelines and contract-first architecture can democratize competitive intelligence. By bridging raw web crawling, psychological hook deconstruction, and instant creative synthesis, it gives brands an unfair advantage in performance marketing."
+            },
+            {
+                "heading": "explore more",
+                "links": [
+                    {
+                        "label": "View on GitHub",
+                        "url": "https://github.com/costitza/adreverse"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "RippleTrace",
+        "category": "Software",
+        "description": "A Financial GraphRAG engine that predicts and visualizes global supply chain and market risks.",
+        "link": "rippletrace",
+        "image": "/resources/landingpage.PNG",
+        "content": [
+            {
+                "heading": "overview",
+                "text": "RippleTrace is a specialized Graph Retrieval-Augmented Generation (GraphRAG) platform designed to map and quantify 'ripple effects' in global financial markets. It transforms unstructured news and dense regulatory filings into a structured Neo4j Knowledge Graph to uncover non-obvious dependencies."
+            },
+            {
+                "heading": "technical architecture",
+                "text": "The system follows a 'Source-to-Graph-to-Inference' pipeline, optimized for low-latency financial intelligence:",
+                "list": [
+                    "Data Ingestion: High-throughput crawlers for Alpaca/Yahoo Finance and a specialized SEC 10-K 'Risk Factor' parser via sec-api.",
+                    "Graph Database: Neo4j acts as the primary source of truth, storing entities and high-dimensional relationships.",
+                    "Backend Engine: FastAPI with a modern lifespan architecture for efficient database connection pooling.",
+                    "Frontend: Next.js 15+ application utilizing react-force-graph for interactive supply chain visualization."
+                ],
+                "image": "/resources/dashboard.PNG"
+            },
+            {
+                "heading": "tiered model strategy",
+                "text": "RippleTrace employs a dual-model approach to balance speed and reasoning depth:",
+                "list": [
+                    "Llama 3.1 8B (Instant): Processes real-time news articles, prioritizing high throughput for daily event extraction.",
+                    "Llama 3.3 70B (Versatile): Leveraged for deep reasoning on SEC 10-K filings, where a large context window and complex entity resolution are required to parse dense legal language.",
+                    "Groq Inference: All extractions utilize ChatGroq for sub-second LLM response times."
+                ]
+            },
+            {
+                "heading": "knowledge graph ontology",
+                "text": "The system utilizes a custom financial ontology in src/extractor.py, moving beyond simple NER to risk-aware graph extraction:",
+                "list": [
+                    "Specialized Entities: Risk_Event (disasters, strikes), Raw_Material, Product, Financial_Metric, and Market_Index.",
+                    "Directed Relationships: VULNERABLE_TO / EXPOSED_TO (future risk mapping), IMPACTS_METRIC (linkage to quantitative data), and SUPPLIES / DEPENDS_ON (vertical supply chain backbone).",
+                    "Data Lineage: Every entity is connected to its source via a REPORTS_ON relationship, providing perfect traceability from a graph node back to the original article snippet."
+                ],
+                "image": "/resources/graph.PNG"
+            },
+            {
+                "heading": "graph database visualization",
+                "text": "The extracted knowledge is persisted in a Neo4j instance, enabling complex multi-hop queries to trace risk propagation through the global supply chain.",
+                "image": "/resources/rippletracedb.png"
+            },
+            {
+                "heading": "graphrag & traversal logic",
+                "text": "Instead of standard vector search, RippleTrace uses structural graph traversal for deterministic context retrieval:",
+                "list": [
+                    "2-Hop Neighborhoods: The API retrieves subgraphs centered around a ticker, filtering out 'Region' nodes to eliminate network noise while maintaining supply chain context.",
+                    "Structural Reasoning: The risk-assessment endpoint identifies exact dependency chains (e.g., 'Port Strike' -> 'Semi-conductor Plant' -> 'Tech Ticker') to feed the LLM hallucination-free context.",
+                    "Path Normalization: Custom Python logic in the API layer handles path reconstruction to ensure data integrity during complex multi-hop Cypher queries."
+                ]
+            },
+            {
+                "heading": "explore more",
+                "links": [
+                    {
+                        "label": "View Frontend Code",
+                        "url": "https://github.com/costitza/rippletrace/tree/main/frontend"
+                    },
+                    {
+                        "label": "View API & Backend Engine",
+                        "url": "https://github.com/costitza/rippletrace"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": ".flux",
+        "category": "Software",
+        "description": "An AI-first engineering intelligence dashboard that gives your code a voice.",
+        "link": "dotflux",
+        "image": "/resources/dotflux_landing.png",
+        "content": [
+            {
+                "heading": "introduction",
+                "text": ".flux is an engineering intelligence platform designed to centralize the fragmented context of software development. Created by me and Tisca Catalin during the \"AI Thinkerers\" Hackathon in Bucharest (organized by ElevenLabs), this project secured 4th place in the local competition.",
+                "subtext": "The platform ingests signals from GitHub repositories, pull requests, and voice meetings into a unified Convex database, allowing AI agents to analyze the \"pulse\" of an engineering team."
+            },
+            {
+                "heading": "the problem & solution",
+                "text": "Engineering context is often scattered across code, chat logs, and call notes. AI agents typically act blindly without access to this historical data. .flux solves this by creating a \"God mode\" context layer. It captures:",
+                "list": [
+                    "Code Metadata: PRs, commits, and file changes via GitHub.",
+                    "Human Context: Voice calls and architectural decisions via ElevenLabs.",
+                    "Team Dynamics: Contributor roles and seniority inferred from code complexity."
+                ]
+            },
+            {
+                "heading": "agentic workflow",
+                "text": "Unlike simple CI/CD scripts, .flux employs autonomous agents to reason about the data:",
+                "list": [
+                    "The Analyst (PRAnalyzer): Proactively monitors PRs to assess risk levels (Low to Critical) and impact radius without human intervention.",
+                    "The Profiler (ContributorProfiler): Analyzes commit history to infer if a contributor is a \"Frontend Junior\" or \"Backend Lead\".",
+                    "The Scribe (Meeting Listener): Uses ElevenLabs Scribe v1 to Transcribe engineering calls and extract actionable TODOs linked to specific files."
+                ]
+            },
+            {
+                "heading": "voice intelligence",
+                "text": "The crown jewel of the project is the RepoAssistant Agent. It allows engineers to literally \"talk\" to their codebase. Using ElevenLabs Multilingual v2 for speech-out and the Vercel AI SDK for orchestration, users can ask questions like \"What is the risk level of the last 3 PRs?\" or \"Who owns the payment infrastructure?\" and receive a spoken, context-aware answer."
+            },
+            {
+                "heading": "technical implementation",
+                "text": "The project utilizes a modern, real-time stack to support agentic behavior. Here is a snippet showing how we handle text-to-speech generation in the API:",
+                "code": "// api/speak/route.ts\nconst { audio } = await generateSpeech({\n  model: elevenlabs.speech(modelId),\n  text,\n});\n\nconst arrayBuffer = audio.uint8Array.buffer as ArrayBuffer;\nconst blob = new Blob([arrayBuffer], { type: \"audio/mpeg\" });\n\nreturn new Response(blob, {\n  status: 200,\n  headers: { \"Content-Type\": \"audio/mpeg\" },\n});"
+            },
+            {
+                "heading": "tech stack",
+                "list": [
+                    "Frontend: Next.js 16 (App Dir), React 19, Tailwind CSS v4, Shadcn UI.",
+                    "Backend & DB: Convex (Real-time database and scheduled functions).",
+                    "AI & Agents: Vercel AI SDK, OpenAI, ElevenLabs (STT & TTS).",
+                    "Auth & Tools: Clerk Authentication, Octokit (GitHub API)."
+                ]
+            },
+            {
+                "heading": "conclusion",
+                "text": ".flux moves beyond static dashboards. By combining deep code analysis with voice intelligence, it creates a living, breathing interface for software engineering teams. It transforms raw metadata into actionable insights, bridging the gap between what the code says and what the team intends."
+            },
+            {
+                "heading": "explore more",
+                "links": [
+                    {
+                        "label": "View on Github",
+                        "url": "https://github.com/costitza/dotflox"
+                    },
+                    {
+                        "label": "AI Tinkerers Hackathon Entry",
+                        "url": "https://bucharest.aitinkerers.org/hackathons/h_VnaDazfvoi4/entries/ht_eXQP5hndxUw"
+                    }
                 ]
             }
         ]
@@ -165,7 +401,10 @@
             {
                 "heading": "explore more",
                 "links": [
-                    { "label": "View on GitHub", "url": "https://github.com/costitza/udraw" }
+                    {
+                        "label": "View on GitHub",
+                        "url": "https://github.com/costitza/udraw"
+                    }
                 ]
             }
         ]
@@ -234,133 +473,14 @@
             {
                 "heading": "explore more",
                 "links": [
-                    { "label": "View on GitHub", "url": "https://github.com/costitza/amsh_itbi" },
-                    { "label": "Full Documentation (PDF)", "url": "/resources/documentatie_amsh.pdf" }
-                ]
-            }
-        ]
-    },
-    {
-        "title": ".flux",
-        "category": "Software",
-        "description": "An AI-first engineering intelligence dashboard that gives your code a voice.",
-        "link": "dotflux",
-        "image": "/resources/dotflux_landing.png",
-        "content": [
-            {
-                "heading": "introduction",
-                "text": ".flux is an engineering intelligence platform designed to centralize the fragmented context of software development. Created by me and Tisca Catalin during the \"AI Thinkerers\" Hackathon in Bucharest (organized by ElevenLabs), this project secured 4th place in the local competition.",
-                "subtext": "The platform ingests signals from GitHub repositories, pull requests, and voice meetings into a unified Convex database, allowing AI agents to analyze the \"pulse\" of an engineering team."
-            },
-            {
-                "heading": "the problem & solution",
-                "text": "Engineering context is often scattered across code, chat logs, and call notes. AI agents typically act blindly without access to this historical data. .flux solves this by creating a \"God mode\" context layer. It captures:",
-                "list": [
-                    "Code Metadata: PRs, commits, and file changes via GitHub.",
-                    "Human Context: Voice calls and architectural decisions via ElevenLabs.",
-                    "Team Dynamics: Contributor roles and seniority inferred from code complexity."
-                ]
-            },
-            {
-                "heading": "agentic workflow",
-                "text": "Unlike simple CI/CD scripts, .flux employs autonomous agents to reason about the data:",
-                "list": [
-                    "The Analyst (PRAnalyzer): Proactively monitors PRs to assess risk levels (Low to Critical) and impact radius without human intervention.",
-                    "The Profiler (ContributorProfiler): Analyzes commit history to infer if a contributor is a \"Frontend Junior\" or \"Backend Lead\".",
-                    "The Scribe (Meeting Listener): Uses ElevenLabs Scribe v1 to Transcribe engineering calls and extract actionable TODOs linked to specific files."
-                ]
-            },
-            {
-                "heading": "voice intelligence",
-                "text": "The crown jewel of the project is the RepoAssistant Agent. It allows engineers to literally \"talk\" to their codebase. Using ElevenLabs Multilingual v2 for speech-out and the Vercel AI SDK for orchestration, users can ask questions like \"What is the risk level of the last 3 PRs?\" or \"Who owns the payment infrastructure?\" and receive a spoken, context-aware answer."
-            },
-            {
-                "heading": "technical implementation",
-                "text": "The project utilizes a modern, real-time stack to support agentic behavior. Here is a snippet showing how we handle text-to-speech generation in the API:",
-                "code": "// api/speak/route.ts\nconst { audio } = await generateSpeech({\n  model: elevenlabs.speech(modelId),\n  text,\n});\n\nconst arrayBuffer = audio.uint8Array.buffer as ArrayBuffer;\nconst blob = new Blob([arrayBuffer], { type: \"audio/mpeg\" });\n\nreturn new Response(blob, {\n  status: 200,\n  headers: { \"Content-Type\": \"audio/mpeg\" },\n});"
-            },
-            {
-                "heading": "tech stack",
-                "list": [
-                    "Frontend: Next.js 16 (App Dir), React 19, Tailwind CSS v4, Shadcn UI.",
-                    "Backend & DB: Convex (Real-time database and scheduled functions).",
-                    "AI & Agents: Vercel AI SDK, OpenAI, ElevenLabs (STT & TTS).",
-                    "Auth & Tools: Clerk Authentication, Octokit (GitHub API)."
-                ]
-            },
-            {
-                "heading": "conclusion",
-                "text": ".flux moves beyond static dashboards. By combining deep code analysis with voice intelligence, it creates a living, breathing interface for software engineering teams. It transforms raw metadata into actionable insights, bridging the gap between what the code says and what the team intends."
-            },
-            {
-                "heading": "explore more",
-                "links": [
-                    { "label": "View on Github", "url": "https://github.com/costitza/dotflox" },
-                    { "label": "AI Tinkerers Hackathon Entry", "url": "https://bucharest.aitinkerers.org/hackathons/h_VnaDazfvoi4/entries/ht_eXQP5hndxUw" }
-                ]
-            }
-        ]
-    },
-    {
-        "title": "RippleTrace",
-        "category": "Software",
-        "description": "A Financial GraphRAG engine that predicts and visualizes global supply chain and market risks.",
-        "link": "rippletrace",
-        "image": "/resources/landingpage.PNG",
-        "content": [
-            {
-                "heading": "overview",
-                "text": "RippleTrace is a specialized Graph Retrieval-Augmented Generation (GraphRAG) platform designed to map and quantify 'ripple effects' in global financial markets. It transforms unstructured news and dense regulatory filings into a structured Neo4j Knowledge Graph to uncover non-obvious dependencies."
-            },
-            {
-                "heading": "technical architecture",
-                "text": "The system follows a 'Source-to-Graph-to-Inference' pipeline, optimized for low-latency financial intelligence:",
-                "list": [
-                    "Data Ingestion: High-throughput crawlers for Alpaca/Yahoo Finance and a specialized SEC 10-K 'Risk Factor' parser via sec-api.",
-                    "Graph Database: Neo4j acts as the primary source of truth, storing entities and high-dimensional relationships.",
-                    "Backend Engine: FastAPI with a modern lifespan architecture for efficient database connection pooling.",
-                    "Frontend: Next.js 15+ application utilizing react-force-graph for interactive supply chain visualization."
-                ],
-                "image": "/resources/dashboard.PNG"
-            },
-            {
-                "heading": "tiered model strategy",
-                "text": "RippleTrace employs a dual-model approach to balance speed and reasoning depth:",
-                "list": [
-                    "Llama 3.1 8B (Instant): Processes real-time news articles, prioritizing high throughput for daily event extraction.",
-                    "Llama 3.3 70B (Versatile): Leveraged for deep reasoning on SEC 10-K filings, where a large context window and complex entity resolution are required to parse dense legal language.",
-                    "Groq Inference: All extractions utilize ChatGroq for sub-second LLM response times."
-                ]
-            },
-            {
-                "heading": "knowledge graph ontology",
-                "text": "The system utilizes a custom financial ontology in src/extractor.py, moving beyond simple NER to risk-aware graph extraction:",
-                "list": [
-                    "Specialized Entities: Risk_Event (disasters, strikes), Raw_Material, Product, Financial_Metric, and Market_Index.",
-                    "Directed Relationships: VULNERABLE_TO / EXPOSED_TO (future risk mapping), IMPACTS_METRIC (linkage to quantitative data), and SUPPLIES / DEPENDS_ON (vertical supply chain backbone).",
-                    "Data Lineage: Every entity is connected to its source via a REPORTS_ON relationship, providing perfect traceability from a graph node back to the original article snippet."
-                ],
-                "image": "/resources/graph.PNG"
-            },
-            {
-                "heading": "graph database visualization",
-                "text": "The extracted knowledge is persisted in a Neo4j instance, enabling complex multi-hop queries to trace risk propagation through the global supply chain.",
-                "image": "/resources/rippletracedb.png"
-            },
-            {
-                "heading": "graphrag & traversal logic",
-                "text": "Instead of standard vector search, RippleTrace uses structural graph traversal for deterministic context retrieval:",
-                "list": [
-                    "2-Hop Neighborhoods: The API retrieves subgraphs centered around a ticker, filtering out 'Region' nodes to eliminate network noise while maintaining supply chain context.",
-                    "Structural Reasoning: The risk-assessment endpoint identifies exact dependency chains (e.g., 'Port Strike' -> 'Semi-conductor Plant' -> 'Tech Ticker') to feed the LLM hallucination-free context.",
-                    "Path Normalization: Custom Python logic in the API layer handles path reconstruction to ensure data integrity during complex multi-hop Cypher queries."
-                ]
-            },
-            {
-                "heading": "explore more",
-                "links": [
-                    { "label": "View Frontend Code", "url": "https://github.com/costitza/rippletrace/tree/main/frontend" },
-                    { "label": "View API & Backend Engine", "url": "https://github.com/costitza/rippletrace" }
+                    {
+                        "label": "View on GitHub",
+                        "url": "https://github.com/costitza/amsh_itbi"
+                    },
+                    {
+                        "label": "Full Documentation (PDF)",
+                        "url": "/resources/documentatie_amsh.pdf"
+                    }
                 ]
             }
         ]
